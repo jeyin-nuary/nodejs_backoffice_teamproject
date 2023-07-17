@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Menus.init(
     {
-      meunId: {
+      menuId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -23,11 +23,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      meunName: {
+      menuName: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      meunUrl: {
+      menuUrl: {
+        type: DataTypes.STRING,
+      },
+      menuDescription: {
+        allowNull: false,
         type: DataTypes.STRING,
       },
       menuPrice: {
