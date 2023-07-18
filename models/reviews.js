@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
       });
 
-      this.hasOne(models.Orders, {
+      this.belongsTo(models.Orders, {
         targetKey: 'orderId',
         foreignKey: 'orderId',
       });
