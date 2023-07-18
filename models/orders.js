@@ -13,6 +13,14 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'storeId',
         foreignKey: 'storeId',
       });
+      this.hasMany(models.users, {
+        targetKey: 'userId',
+        foreignKey: 'userId',
+      });
+      this.hasMany(models.ordermenus, {
+        targetKey: 'orderId',
+        foreignKey: 'orderId',
+      });
     }
   }
   Orders.init(

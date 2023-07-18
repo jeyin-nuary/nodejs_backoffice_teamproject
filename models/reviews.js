@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'userId',
         foreignKey: 'userId',
       });
+
+      this.hasOne(models.orders, {
+        targetKey: 'orderId',
+        foreignKey: 'orderId',
+      });
     }
   }
   Reviews.init(

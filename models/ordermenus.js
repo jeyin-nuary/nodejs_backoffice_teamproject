@@ -9,6 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.orders, {
+        targetKey: 'orderId',
+        foreignKey: 'orderId',
+      });
+      this.hasMany(models.menu, {
+        targetKey: 'menuId',
+        foreignKey: 'menuId',
+      });
     }
   }
   OrderMenus.init(
