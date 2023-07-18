@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'userId',
         foreignKey: 'userId',
       });
-      this.hasMany(models.Orders, {
-        targetKey: 'orderId',
+      this.hasMany(models.OrderMenus, {
+        sourcekey: 'orderId',
         foreignKey: 'orderId',
       });
     }

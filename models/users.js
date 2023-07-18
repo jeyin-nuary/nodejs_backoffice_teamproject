@@ -10,20 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.Reviews, {
-        targetKey: 'userId',
+        sourcekey: 'userId',
         foreignKey: 'userId',
       });
       this.hasMany(models.Stores, {
-        targetKey: 'userId',
+        sourcekey: 'userId',
         foreignKey: 'userId',
       });
       this.hasMany(models.Orders, {
-        targetKey: 'userId',
+        sourcekey: 'userId',
         foreignKey: 'userId',
-      });
-      this.hasMany(models.Orders, {
-        targetKey: 'userAddress',
-        foreignKey: 'userAddress',
       });
     }
   }
