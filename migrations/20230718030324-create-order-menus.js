@@ -10,10 +10,22 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       menuId: {
+        references: {
+          model: 'Menus',
+          key: 'menuId',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         allowNull: false,
         type: Sequelize.INTEGER,
       },
       orderId: {
+        references: {
+          model: 'Orders',
+          key: 'orderId',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         allowNull: false,
         type: Sequelize.INTEGER,
       },
