@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Users extends Model {
+  class Menus extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,70 +9,56 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Reviews, {
-        targetKey: 'userId',
-        foreignKey: 'userId',
-      });
       this.hasMany(models.Stores, {
-        targetKey: 'userId',
-        foreignKey: 'userId',
+        targetKey: 'storeId',
+        foreignKey: 'storeId',
       });
-      this.hasMany(models.Orders, {
-        targetKey: 'userId',
-        foreignKey: 'userId',
-      });
-      this.hasMany(models.Orders, {
-        targetKey: 'userAddress',
-        foreignKey: 'userAddress',
+      this.hasMany(models.OrderMenus, {
+        targetKey: 'menuId',
+        foreignKey: 'menuId',
       });
     }
   }
-  Users.init(
+  Menus.init(
     {
-      userId: {
+      menuId: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      storeId: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      email: {
+      menuName: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      password: {
+      menuUrl: {
+        type: DataTypes.STRING,
+      },
+      menuInfo: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      role: {
-        defaultValue: 0,
+      menuPrice: {
+        allowNull: false,
         type: DataTypes.INTEGER,
-      },
-      nickname: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      userPoints: {
-        allowNull: false,
-        defaultValue: 1000000,
-        type: DataTypes.INTEGER,
-      },
-      userAddress: {
-        allowNull: false,
-        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
       },
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
       },
     },
     {
       sequelize,
-      modelName: 'Users',
+      modelName: 'Menus',
     }
   );
-  return Users;
+  return Menus;
 };
