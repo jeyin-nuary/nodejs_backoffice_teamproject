@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'orderId',
         foreignKey: 'orderId',
       });
-      this.hasMany(models.Menus, {
+      this.hasMany(models.Menu, {
         targetKey: 'menuId',
         foreignKey: 'menuId',
       });
