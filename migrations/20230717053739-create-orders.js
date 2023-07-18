@@ -10,36 +10,30 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       storeId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
         references: {
           model: 'Stores',
           key: 'storeId',
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-        allowNull: false,
-        type: Sequelize.INTEGER,
       },
       userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'userId',
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-        allowNull: false,
-        type: Sequelize.INTEGER,
       },
       deliveryReq: {
         allowNull: false,
         type: Sequelize.STRING,
       },
       userAddress: {
-        references: {
-          model: 'Users',
-          key: 'userAddress',
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
         allowNull: false,
         type: Sequelize.STRING,
       },
