@@ -1,0 +1,43 @@
+<form action="/verify-email" method="POST">
+                <div class="mb-3">
+                  <label class="form-label" for="email">Email</label>
+                  <input
+                    class="form-control"
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                  />
+                  <input type="submit" value="이메일 인증" />
+                </div>
+              </form>
+
+              <form
+                action="/register"
+                method="POST"
+                class="validated-form"
+                novalidate
+              >
+                <div class="mb-3">
+                  <label class="form-label" for="username">Username</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="username"
+                    name="username"
+                    autofocus
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="password">Password</label>
+                  <input
+                    class="form-control"
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                  />
+                </div>
+                <button class="btn btn-success btn-block">Register</button>
+              </form>
