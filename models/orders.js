@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.stores, {
+        targetKey: 'storeId',
+        foreignKey: 'storeId',
+      });
     }
   }
   Orders.init(
@@ -26,6 +30,14 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
+      },
+      deliveryReq: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      userAddress: {
+        allowNull: false,
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,

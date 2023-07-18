@@ -17,6 +17,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      orderId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       reviewContent: {
         allowNull: false,
         type: Sequelize.STRING,

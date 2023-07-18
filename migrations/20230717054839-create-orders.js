@@ -17,6 +17,18 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      orderId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      deliveryReq: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      userAddress: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

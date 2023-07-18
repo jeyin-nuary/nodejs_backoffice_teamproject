@@ -20,7 +20,7 @@ module.exports = {
       menuUrl: {
         type: Sequelize.STRING,
       },
-      menuDescription: {
+      menuInfo: {
         allowNull: false,
         type: Sequelize.STRING,
       },
