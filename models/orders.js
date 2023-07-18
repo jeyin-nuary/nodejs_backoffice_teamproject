@@ -14,14 +14,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'storeId',
       });
       this.belongsTo(models.Users, {
-        targetKey: 'userAddress',
-        foreignKey: 'userAddress',
-      });
-      this.belongsTo(models.Users, {
         targetKey: 'userId',
         foreignKey: 'userId',
       });
       this.hasMany(models.OrderMenus, {
+        sourcekey: 'orderId',
+        foreignKey: 'orderId',
+      });
+      this.hasMany(models.Reviews, {
         sourcekey: 'orderId',
         foreignKey: 'orderId',
       });
