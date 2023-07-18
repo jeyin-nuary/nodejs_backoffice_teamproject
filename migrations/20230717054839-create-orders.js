@@ -17,17 +17,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      orderId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       deliveryReq: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
       userAddress: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

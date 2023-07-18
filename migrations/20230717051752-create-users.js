@@ -17,7 +17,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      poins: {
+      userPoints: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
