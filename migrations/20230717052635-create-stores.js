@@ -9,11 +9,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       storeName: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      storeAdress: {
+      storeAddress: {
         allowNull: false,
         type: Sequelize.STRING,
       },

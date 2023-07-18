@@ -9,6 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.reviews, {
+        targetKey: 'storeId',
+        foreignKey: 'storeId',
+      });
+      this.hasMany(models.menus, {
+        targetKey: 'storeId',
+        foreignKey: 'storeId',
+      });
+      this.hasMany(models.users, {
+        targetKey: 'userId',
+        foreignKey: 'userId',
+      });
+      this.hasMany(models.ordermenu, {
+        targetKey: 'menuId',
+        foreignKey: 'menuId',
+      });
     }
   }
   Stores.init(
@@ -19,11 +35,15 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
+      userId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
       storeName: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      storeAdress: {
+      storeAddress: {
         allowNull: false,
         type: DataTypes.STRING,
       },
