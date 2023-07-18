@@ -5,12 +5,12 @@ const { Menus } = require('../models');
 
 // 테스트
 router.post('/menus', async (req, res) => {
-  const { storeId, menuName, menuUrl, menuDescription, menuPrice } = req.body;
+  const { menuName, menuUrl, menuInfo, menuPrice } = req.body;
   await Menus.create({
-    storeId,
+    storeId: 1,
     menuName,
     menuUrl,
-    menuDescription,
+    menuInfo,
     menuPrice,
   });
   res.json({ message: 'create' });

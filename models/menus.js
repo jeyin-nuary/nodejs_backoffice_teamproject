@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(models.OrderMenus, {
         targetKey: 'menuId',
-        foreignKey: 'meunId',
+        foreignKey: 'menuId',
       });
     }
   }
