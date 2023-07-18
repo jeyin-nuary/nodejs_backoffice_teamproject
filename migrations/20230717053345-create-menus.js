@@ -21,7 +21,8 @@ module.exports = {
         type: Sequelize.STRING,
       },
       menuInfo: {
-        type: DataTypes.STRING,
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       menuPrice: {
         allowNull: false,

@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       menuInfo: {
+        allowNull: false,
         type: DataTypes.STRING,
       },
       menuPrice: {
