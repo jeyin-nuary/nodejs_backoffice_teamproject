@@ -1,34 +1,33 @@
-// const jwt = require('jsonwebtoken');
-// const { Auth } = require('../routes');
-// // const { EmailAuth } = require('../public');
-// const { AuthMails } = require('../models');
+const jwt = require('jsonwebtoken');
+const { Auth } = require('../routes');
+// const { EmailAuth } = require('../public');
+const { Users, AuthMails } = require('../models');
 
-// // require('dotenv').config();
-// // const env = process.env;
+require('dotenv').config();
 
-// const authMiddleware = async (req, res, next) => {
-//   const { accessToken } = req.cookies;
+const authMiddleware = async (req, res, next) => {
+  const { accessToken } = req.cookies;
 
-//   if (!accessToken) {
-//     return res.status(401).json({ message: 'Access Token이 필요합니다.' });
-//   }
+  if (!accessToken) {
+    return res.status(401).json({ message: 'Access Token이 필요합니다.' });
+  }
 
-//   try {
-//     const decodedAccessToken = jwt.verify(accessToken, env.ACCESS_KEY);
-//     const user = await Users.findOne({
-//       where: { userId: decodedAccessToken.userId },
-//     });
-//     if (!user) {
-//       return res.status(401).jon({
-//         errorMessage: '유효한 사용자가 아닙니다.',
-//       });
-//     }
-//     res.locals.user = user;
+  try {
+    const decodedAccessToken = jwt.verify(accessToken, process.env.ACCESS_KEY);
+    const user = await Users.findOne({
+      where: { userId: decodedAccessToken.userId },
+    });
+    if (!user) {
+      return res.status(401).json({
+        errorMessage: '유효한 사용자가 아닙니다.',
+      });
+    }
+    res.locals.user = user;
 
-//     next();
-//   } catch (error) {
-//     res.status(401).json({ message: '유효하지 않은 Access Token입니다.' });
-//   }
-// };
+    next();
+  } catch (error) {
+    res.status(401).json({ message: '유효하지 않은 Access Token입니다.' });
+  }
+};
 
-// module.exports;
+module.exports;
