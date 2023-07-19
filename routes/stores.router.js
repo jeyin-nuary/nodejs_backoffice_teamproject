@@ -1,12 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { Stores, Menus, Reviews } = require('../models');
-// Stores에서 storeName, storeAddress, storeUrl, storeRating
-// Menus에서 menuName, menuUrl
-// Reviews에서 reviewContent, reviewUrl
+const { Stores, Menus, Reviews, Users } = require('../models');
 
 // 가게 상세 페이지 조회 api
-// 가게 이름, 가게 주소, 가게 사진, 메뉴 이름, 메뉴사진, 리뷰 조회
 router.get('/stores/:storeId', async (req, res) => {
   const { storeId } = req.params;
   const getStore = await Stores.findOne({
@@ -14,16 +10,16 @@ router.get('/stores/:storeId', async (req, res) => {
     attributes: ['storeName', 'storeAddress', 'storeUrl', 'storeRating'],
     include: [
       {
-        models: Menus,
-        attributes: ['menuName', 'menuUrl'],
+        model: Menus,
+        attributes: ['menuName', 'menuImg', 'menuPrice'],
       },
       {
-        models: Reviews,
+        model: Reviews,
         attributes: ['reviewContent', 'reviewUrl'],
       },
     ],
   });
-  res.status(200).json({ data: getStore });
+  res.status(200).json(getStore);
 });
 
 // 스토어 등록 test
@@ -36,6 +32,20 @@ router.post('/stores', async (req, res) => {
     storeRating: 10,
   });
   res.json({ data: store });
+});
+
+// user 등록 test
+router.post('/users', async (req, res) => {
+  const user = await Users.create({
+    userId: 1,
+    email: 'test1@naver.com',
+    password: '1111',
+    role: 1,
+    nickname: 'testNickname',
+    userPoints: 1000000,
+    userAddress: '경기도 길바닥',
+  });
+  res.json({ data: user });
 });
 
 module.exports = router;
