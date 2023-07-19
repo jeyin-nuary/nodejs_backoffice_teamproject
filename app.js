@@ -3,7 +3,6 @@ const cookieParser = require('cookie-parser');
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
-// const { SESSION_SECRET_KEY } = process.env;
 
 const authRouter = require('./routes/auth.router');
 const menuRouter = require('./routes/menus.router');

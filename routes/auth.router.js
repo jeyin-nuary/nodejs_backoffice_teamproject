@@ -6,7 +6,8 @@ const jwt = require('jsonwebtoken');
 const dayjs = require('dayjs');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
-const env = process.env;
+
+require('dotenv').config();
 
 // 회원가입 페이지 띄우기
 router.get('/signup', async (req, res) => {
@@ -17,11 +18,11 @@ router.get('/signup', async (req, res) => {
 router.post('/signUp/confirm', async (req, res) => {
   const { email } = req.body;
 
-  // // 중복되는 이메일 찾기
-  // const overlappedEmail = await AuthMails.findOne({ where: { email } });
-  // if (overlappedEmail) {
-  //   return res.status(400).json({ message: '이미 존재하는 이메일입니다.' });
-  // }
+  // 중복되는 이메일 찾기
+  const overlappedEmail = await Users.findOne({ where: { email } });
+  if (overlappedEmail) {
+    return res.status(400).json({ message: '이미 존재하는 이메일입니다.' });
+  }
 
   // 이메일 인증 번호 생 성
   const AuthCode = String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
@@ -39,19 +40,19 @@ router.post('/signUp/confirm', async (req, res) => {
     // port: 587,
     // secure: false,
     auth: {
-      user: 'nodeking6@gmail.com', // 발송자 이메일
-      pass: 'yizigjeeiyfaryle', // 발송자 비밀번호
+      user: process.env.admin_email, // 발송자 이메일
+      pass: process.env.admin_password, // 발송자 비밀번호
     },
   });
 
-  async function main() {
+  const main = async () => {
     await transporter.sendMail({
       from: 'NODEKING',
       to: email,
       subject: 'NODEKING 배달서비스 회원가입 이메일 인증',
-      html: '<h1>인증번호를 입력해 주세요. \n\n\n\n\n\n</h1>' + AuthCode,
+      html: `<h1>인증번호를 입력해 주세요.</h1><br><br>${AuthCode}`,
     });
-  }
+  };
 
   main();
   res.status(201).json({ message: '인증번호가 전송되었습니다.' });
@@ -138,14 +139,14 @@ router.post('/signup', async (req, res) => {
 
 // 액세스 토큰 발급 (깡통)
 const generateAccessToken = (userId) => {
-  return jwt.sign({ userId: userId }, env.ACCESS_KEY, {
+  return jwt.sign({ userId }, process.env.ACCESS_KEY, {
     expiresIn: '1h',
   });
 };
 
 // 리프레시 토큰 발급
-const generateRefreshToken = () => {
-  return jwt.sign(env.REFRESH_KEY, {
+const generateRefreshToken = (userId) => {
+  return jwt.sign({ userId }, process.env.REFRESH_KEY, {
     expiresIn: '7d',
   });
 };
@@ -173,7 +174,7 @@ router.post('/login', async (req, res) => {
     // 처음 로그인
     if (!refreshToken) {
       const newAccessToken = generateAccessToken(userId);
-      const newRefreshToken = generateRefreshToken();
+      const newRefreshToken = generateRefreshToken(userId);
 
       return res
         .cookie('accessToken', newAccessToken, { httpOnly: true })
@@ -183,7 +184,7 @@ router.post('/login', async (req, res) => {
 
     // 1: Access Token과 Refresh Token 모두 만료된 경우
     try {
-      jwt.verify(refreshToken, env.REFRESH_KEY);
+      jwt.verify(refreshToken, process.env.REFRESH_KEY);
     } catch (error) {
       if (error.name === 'TokenExpiredError') {
         const decodedRefreshToken = jwt.decode(refreshToken);
@@ -204,7 +205,7 @@ router.post('/login', async (req, res) => {
     }
     // 2: Access Token은 만료됐지만 Refresh Token은 유효한 경우
     try {
-      jwt.verify(req.cookies.accessToken, env.ACCESS_KEY);
+      jwt.verify(req.cookies.accessToken, process.env.ACCESS_KEY);
     } catch (error) {
       if (error.name === 'TokenExpiredError') {
         const decodedRefreshToken = jwt.decode(refreshToken);
@@ -233,6 +234,7 @@ router.post('/login', async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: '로그인 오류가 발생했습니다.' });
   }
 });
