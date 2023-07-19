@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'storeId',
         foreignKey: 'storeId',
       });
-      this.hasMany(models.OrderMenus, {
+      this.hasMany(models.Orders, {
         sourcekey: 'menuId',
         foreignKey: 'menuId',
       });
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      menuUrl: {
+      menuImg: {
         type: DataTypes.STRING,
       },
       menuInfo: {
