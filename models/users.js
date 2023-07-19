@@ -10,15 +10,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.Reviews, {
-        sourcekey: 'userId',
+        sourceKey: 'userId',
         foreignKey: 'userId',
       });
       this.hasMany(models.Stores, {
-        sourcekey: 'userId',
+        sourceKey: 'userId',
         foreignKey: 'userId',
       });
       this.hasMany(models.Orders, {
-        sourcekey: 'userId',
+        sourceKey: 'userId',
         foreignKey: 'userId',
       });
     }
@@ -27,6 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       userId: {
         allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
         type: DataTypes.INTEGER,
       },
       email: {
