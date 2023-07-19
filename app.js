@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 const storeRouter = require('./routes/stores.router');
-const orderRouter = require('./routes/orders.router');
+const menuRouter = require('./routes/menus.router');
 const orderRouter = require('./routes/orders.router');
 
 app.use(express.json()); // json 파싱
