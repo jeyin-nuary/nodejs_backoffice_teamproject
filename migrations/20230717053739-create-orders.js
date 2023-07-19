@@ -29,11 +29,33 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       },
+      menuId: {
+        references: {
+          model: 'Menus',
+          key: 'menuId',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       deliveryReq: {
         allowNull: false,
         type: Sequelize.STRING,
       },
       userAddress: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      orderQuantity: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      totalPrice: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      orderStatus: {
         allowNull: false,
         type: Sequelize.STRING,
       },
