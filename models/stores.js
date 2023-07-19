@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.Reviews, {
-        sourcekey: 'storeId',
+        sourceKey: 'storeId',
         foreignKey: 'storeId',
       });
       this.hasMany(models.Menus, {
-        sourcekey: 'storeId',
+        sourceKey: 'storeId',
         foreignKey: 'storeId',
       });
       this.belongsTo(models.Users, {
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
       });
       this.hasMany(models.Orders, {
-        sourcekey: 'storeId',
+        sourceKey: 'storeId',
         foreignKey: 'storeId',
       });
     }
