@@ -26,4 +26,9 @@ router.get('/storelists', async (req, res) => {
     console.log(err.message);
   }
 });
+
+// (관리자) 가게 등록
+// router.post('/stores',async (req,res)=>{
+
+// })
 module.exports = router;
