@@ -1,8 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
-require('dotenv').config();
-const PORT = process.env.PORT;
 
 const menuRouter = require('./routes/menus.router');
 
@@ -13,6 +11,6 @@ app.use(express.static('public'));
 
 app.use('/api', [menuRouter]);
 
-app.listen(PORT, () => {
-  console.log(`${PORT}번 포트로 서버가 열렸습니다.`);
+app.listen(3000, () => {
+  console.log('3000번 포트로 서버가 열렸습니다.');
 });

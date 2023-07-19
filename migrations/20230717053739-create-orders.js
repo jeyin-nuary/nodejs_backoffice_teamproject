@@ -12,8 +12,30 @@ module.exports = {
       storeId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Stores',
+          key: 'storeId',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'userId',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      },
+      menuId: {
+        references: {
+          model: 'Menus',
+          key: 'menuId',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         allowNull: false,
         type: Sequelize.INTEGER,
       },
@@ -22,6 +44,18 @@ module.exports = {
         type: Sequelize.STRING,
       },
       userAddress: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      orderQuantity: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      totalPrice: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      orderStatus: {
         allowNull: false,
         type: Sequelize.STRING,
       },
