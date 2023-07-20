@@ -1,7 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const { Stores } = require('../models');
+const { Stores, Menus, Reviews } = require('../models');
 const { Sequelize } = require('sequelize');
+
+// 가게 상세 페이지 조회 api
+router.get('/stores/:storeId', async (req, res) => {
+  const { storeId } = req.params;
+  const getStore = await Stores.findOne({
+    where: { storeId },
+    attributes: ['storeName', 'storeAddress', 'storeUrl', 'storeRating'],
+    include: [
+      {
+        model: Menus,
+        attributes: ['menuName', 'menuImg', 'menuPrice'],
+      },
+      {
+        model: Reviews,
+        attributes: ['reviewContent', 'reviewUrl'],
+      },
+    ],
+  });
+  res.status(200).json(getStore);
+  
 // 가게 목록 페이지 (API 명세없음)
 router.get('/storelists', async (req, res) => {
   try {
