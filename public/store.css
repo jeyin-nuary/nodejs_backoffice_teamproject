@@ -1,15 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
-.first-container {
+.first-div {
+  width: 1200px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  text-align: center;
   align-items: center;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
-  height: 300px;
-  width: 1200px;
+  height: auto;
+
   background-color: rgb(55, 70, 96);
   border-radius: 10px;
+  padding-top: 20px;
 }
+.first-container {
+  width: 100%;
+}
+
+.space {
+  font-family: 'Black Han Sans', sans-serif;
+  width: 800px;
+  font-size: 2.5rem;
+  color: rgb(223, 223, 223);
+}
+.Review-title {
+  font-size: 2rem;
+  color: rgb(223, 223, 223);
+
+  font-family: 'Black Han Sans', sans-serif;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
 .space {
   font-family: 'Black Han Sans', sans-serif;
   margin-left: 110px;
@@ -45,8 +73,30 @@
 }
 
 .store-img {
+  display: flex;
+
   width: 600px;
-  height: 250px;
+  height: 230px;
+}
+.store-desc {
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 600px;
+}
+.store-desc a {
+  width: 100%;
+  font-size: 1.5rem;
+  color: #00ccff;
+}
+.store-desc p {
+  margin: 10px 0 0 0;
+  width: 100%;
+  color: white;
+  font-size: 1.5rem;
 }
 .store-img img {
   width: 100%;
@@ -106,6 +156,7 @@
   height: 100%;
 }
 .menu-name {
+  margin-left: 10px;
   color: white;
   width: 200px;
 }
@@ -133,7 +184,9 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
   color: white;
   height: 130px;
   background-color: rgb(55, 70, 96);
@@ -157,7 +210,7 @@
 }
 
 .review-container {
-  margin-top: 3rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
