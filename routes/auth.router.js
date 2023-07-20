@@ -35,9 +35,7 @@ router.post('/signUp/confirm', async (req, res) => {
   // 이메일 인증: 메일 전송
   const transporter = nodemailer.createTransport({
     service: 'gmail',
-    // host: 'nodeking6@gmail.com',
-    // port: 587,
-    // secure: false,
+
     auth: {
       user: process.env.admin_email, // 발송자 이메일
       pass: process.env.admin_password, // 발송자 비밀번호

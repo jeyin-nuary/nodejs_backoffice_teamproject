@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Stores, Menus, Reviews } = require('../models');
+const authMiddleware = require('../middlewares/auth-middleware');
 const { Sequelize } = require('sequelize');
 
 // 가게 상세 페이지 조회 api
@@ -58,8 +59,9 @@ router.get('/storelists', async (req, res) => {
 });
 
 // (관리자) 가게 등록
-router.post('/stores', async (req, res) => {
+router.post('/stores', authMiddleware, async (req, res) => {
   try {
+    const { userId } = res.locals.user;
     const { storeName, storeAddress, storeUrl } = req.body;
     // 중복된 이름의 가게가 있는지 확인하기 위해서
     const existingStore = await Stores.findOne({ where: { storeName } });
@@ -73,6 +75,7 @@ router.post('/stores', async (req, res) => {
     if (!storeAddress) return res.status(403).json({ errorMessage: '가게 주소를 입력해주세요.' });
     // 가게등록을 생성하고 DB에 저장하는 과정
     const storeRegister = await Stores.create({
+      userId,
       storeName,
       storeAddress,
       storeUrl,
