@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         sourceKey: 'userId',
         foreignKey: 'userId',
       });
+      this.hasOne(models.AuthMails, {
+        sourceKey: 'authCode',
+        foreignKey: 'authCode',
+      });
     }
   }
   Users.init(
