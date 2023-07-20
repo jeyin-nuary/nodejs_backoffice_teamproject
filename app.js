@@ -5,7 +5,6 @@ require('dotenv').config();
 const PORT = process.env.PORT;
 
 require('dotenv').config();
-const PORT = 3000;
 
 const authRouter = require('./routes/auth.router');
 const menuRouter = require('./routes/menus.router');

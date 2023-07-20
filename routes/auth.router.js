@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { Users, AuthMails } = require('../models');
 const jwt = require('jsonwebtoken');
-const middleware = require('../middlewares/auth-middleware');
 const dayjs = require('dayjs');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
