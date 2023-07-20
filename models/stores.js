@@ -36,8 +36,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       userId: {
-        allowNull: false || true,
-        // false 하니까 오류가나서  false || true로 변경 :  로그인없이해서 그런듯?
+        allowNull: false,
+       
         type: DataTypes.INTEGER,
       },
       storeName: {
@@ -52,8 +52,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       storeRating: {
-        allowNull: true,
-        // false -> true 변경   // 1. 가게의 별점은 사용자가 안줄수도 있다고 생각하여 true 변경 2. 39번줄과 마찬가지로 로그인없이해서 그런지 false일때 오류남
+        allowNull: false,
+        defaultValue: 0,
         type: DataTypes.INTEGER,
       },
       createdAt: {
