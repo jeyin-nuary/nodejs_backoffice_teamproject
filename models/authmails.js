@@ -9,11 +9,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // this.belongsTo(models.Users, {
-      //   targetKey: '',
+      this.belongsTo(models.Users, {
+        sourceKey: 'email',
+        foreignKey: 'email',
+      });
+      // this.belongsTo(models.Stores, {
+      //   sourceKey: '',
       //   foreignKey: '',
       // });
-      // this.belongsTo(models.)
+      // this.belongsTo(models.Reviews, {
+      //   sourceKey: '',
+      //   foreignKey: '',
+      // });
+      // this.belongsTo(models.Orders, {
+      //   sourceKey: '',
+      //   foreignKey: '',
+      // });
+      // this.belongsTo(models.Menus, {
+      //   sourceKey: '',
+      //   foreignKey: '',
+      // });
     }
   }
   AuthMails.init(
