@@ -25,8 +25,9 @@ router.get('/stores/:storeId', async (req, res) => {
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ errorMessage: '스토어 조회에 실패했습니다.' });
- 
-  
+  }
+});
+
 // 가게 목록 페이지 (API 명세없음)
 router.get('/storelists', async (req, res) => {
   try {
