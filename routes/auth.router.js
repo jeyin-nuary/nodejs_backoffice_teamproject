@@ -138,14 +138,14 @@ router.post('/signup', async (req, res) => {
 // -----------------------------------------------------------------
 
 // 액세스 토큰 발급 (깡통)
-const generateAccessToken = (userId) => {
+const generateAccessToken = userId => {
   return jwt.sign({ userId }, process.env.ACCESS_KEY, {
     expiresIn: '1h',
   });
 };
 
 // 리프레시 토큰 발급
-const generateRefreshToken = (userId) => {
+const generateRefreshToken = userId => {
   return jwt.sign({ userId }, process.env.REFRESH_KEY, {
     expiresIn: '7d',
   });
