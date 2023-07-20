@@ -25,23 +25,23 @@ router.get('/stores/:storeId/orders', async (req, res) => {
 });
 
 // 오더 상태 변경 API
-router.patch('/orders/:orderId/approve', async (req, res) => {
+router.patch('/orders/:orderId/change', async (req, res) => {
   const { orderId } = req.params;
-  const { newStatus } = req.body;
+  const { orderStatus } = req.body;
 
   try {
     const order = await Orders.findByPk(orderId);
 
     if (!order) {
-      return res.status(404).json({ error: '주문을 찾을 수 없습니다.' });
+      return res.status(404).json({ errorMessage: '주문을 찾을 수 없습니다.' });
     }
 
-    await order.update({ orderStatus: newStatus });
+    await order.update({ orderStatus });
 
-    res.status(200).json({ message: `주문 상태가 ${newStatus}로 변경되었습니다.` });
+    res.status(200).json({ message: `주문 상태가 ${orderStatus}로 변경되었습니다.` });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: '내부 서버 오류입니다.' });
+    res.status(500).json({ errorMessage: '오더 상태 변경에 에러가 생겼습니다.' });
   }
 });
 

@@ -10,11 +10,10 @@ $(document).ready(() => {
     try {
       const response = await fetch(`/api/stores/${storeId}/orders`);
       const orders = await response.json();
-      console.log(orders);
 
       orders.forEach(order => {
         if (order.orderStatus === '주문 등록') {
-          const { userAddress, deliveryReq, orderQuantity, orderStatus } = order;
+          const { orderId, userAddress, deliveryReq, orderQuantity, orderStatus } = order;
           const { menuImg, menuName, menuPrice } = order.Menu;
           const totalPrice = menuPrice * orderQuantity;
 
@@ -38,8 +37,8 @@ $(document).ready(() => {
                                     <p>총액: ${totalPrice}</p>
                                     </div>
                                     <div class="button-container">
-                                        <button id="OrderApprovalBtn" class="order-approval">Order Approval</button>
-                                        <button class="order-refusal">Order Refuse</button>
+                                        <button id="order-ApprovalBtn" class="order-approval" data-orderId=${orderId}>Order Approval</button>
+                                        <button id="order-RefuseBtn" class="order-refusal" data-orderId=${orderId}>Order Refuse</button>
                                     </div>
     
                                 </div>
@@ -47,7 +46,7 @@ $(document).ready(() => {
 
           $('.flow').append(temp_html);
         } else if (order.orderStatus === '주문 승인' || order.orderStatus === '배달 시작') {
-          const { userAddress, deliveryReq, orderQuantity, orderStatus } = order;
+          const { orderId, userAddress, deliveryReq, orderQuantity, orderStatus } = order;
           const { menuImg, menuName, menuPrice } = order.Menu;
           const totalPrice = menuPrice * orderQuantity;
 
@@ -71,8 +70,8 @@ $(document).ready(() => {
                                     <p>총액: ${totalPrice}</p>
                                     </div>
                                     <div class="button-container">
-                                      <button class="order-approval">Delivery Start</button>
-                                     <button class="order-refusal">Delivery completed</button>
+                                      <button id="delivery-startBtn" class="order-approval" data-orderId=${orderId}>Delivery Start</button>
+                                     <button id="delivery-completedBtn" class="order-refusal" data-orderId=${orderId}>Delivery completed</button>
                                     </div>
                                 </div>
                             </div>`;
@@ -84,6 +83,94 @@ $(document).ready(() => {
       console.error(error);
     }
   };
+
+  // 오더 상태 승인
+  const orderApproval = async event => {
+    try {
+      if (event.target.id === 'order-ApprovalBtn') {
+        const req = { orderStatus: '주문 승인' };
+        let result = await fetch(`/api/orders/${event.target.dataset.orderid}/change`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(req),
+        });
+        result = await result.json();
+        alert(result.message);
+        window.location.reload();
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+  // 오더 상태 거절
+  const orderRefuse = async event => {
+    try {
+      if (event.target.id === 'order-RefuseBtn') {
+        const req = { orderStatus: '주문 거절' };
+        let result = await fetch(`/api/orders/${event.target.dataset.orderid}/change`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(req),
+        });
+        result = await result.json();
+        alert(result.message);
+        window.location.reload();
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+  // 오더 상태 배달 시작
+  const deliveryStart = async event => {
+    try {
+      if (event.target.id === 'delivery-startBtn') {
+        const req = { orderStatus: '배달 시작' };
+        let result = await fetch(`/api/orders/${event.target.dataset.orderid}/change`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(req),
+        });
+        result = await result.json();
+        alert(result.message);
+        window.location.reload();
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+  // 오더 상태 배달 완료
+  const deliveryCompleted = async event => {
+    try {
+      if (event.target.id === 'delivery-completedBtn') {
+        const req = { orderStatus: '배달 완료' };
+        let result = await fetch(`/api/orders/${event.target.dataset.orderid}/change`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(req),
+        });
+        result = await result.json();
+        alert(result.message);
+        window.location.reload();
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const body = document.getElementsByTagName('body')[0];
+
+  body.addEventListener('click', orderApproval);
+  body.addEventListener('click', orderRefuse);
+  body.addEventListener('click', deliveryStart);
+  body.addEventListener('click', deliveryCompleted);
 
   getOrders();
 });
