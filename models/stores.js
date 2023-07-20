@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: {
         allowNull: false,
+       
         type: DataTypes.INTEGER,
       },
       storeName: {
@@ -52,6 +53,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       storeRating: {
         allowNull: false,
+        defaultValue: 0,
         type: DataTypes.INTEGER,
       },
       createdAt: {

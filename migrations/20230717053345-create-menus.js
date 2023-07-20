@@ -23,7 +23,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      menuimg: {
+      menuImg: {
         type: Sequelize.STRING,
       },
       menuInfo: {
