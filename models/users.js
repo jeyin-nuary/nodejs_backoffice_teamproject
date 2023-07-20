@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
       });
       this.hasOne(models.AuthMails, {
-        sourceKey: 'authCode',
+        sourceKey: 'email',
         foreignKey: 'authCode',
       });
     }
