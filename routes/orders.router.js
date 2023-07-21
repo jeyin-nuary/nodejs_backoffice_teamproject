@@ -4,6 +4,27 @@ const authMiddlware = require('../middlewares/auth-middleware');
 
 const { Menus, Orders } = require('../models');
 
+// (손님) 주문 등록 API
+router.post('/stores/:storeId/orders', async (req, res) => {
+  try {
+    const data = await Orders.create({
+      storeId: 1,
+      userId: 1,
+      menuId: 1,
+      deliveryReq: '문앞',
+      userAddress: '길바닥',
+      orderQuantity: 1,
+      totalPrice: 5,
+      orderStatus: '주문 등록',
+    });
+
+    res.status(200).json(data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ errorMessage: '주문 등록에 실패했습니다.' });
+  }
+});
+
 // (사장) 주문 상세 페이지 주문 목록 조회 API
 router.get('/stores/:storeId/orders', authMiddlware, async (req, res) => {
   try {
@@ -26,7 +47,7 @@ router.get('/stores/:storeId/orders', authMiddlware, async (req, res) => {
 });
 
 // 오더 상태 변경 API
-router.patch('/orders/:orderId/change', authMiddlware, async (req, res) => {
+router.patch('/orders/:orderId/change', async (req, res) => {
   const { orderId } = req.params;
   const { orderStatus } = req.body;
 

@@ -13,7 +13,9 @@ const getOrders = async () => {
   try {
     const response = await fetch(`/api/stores/${storeId}/orders`);
     const orders = await response.json();
-
+    if (orders.message === '로그인 후 이용가능한 기능입니다.') {
+      return alert(orders.message);
+    }
     orders.forEach(order => {
       if (order.orderStatus === '주문 등록') {
         const { orderId, userAddress, deliveryReq, orderQuantity, orderStatus } = order;
