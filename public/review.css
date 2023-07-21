@@ -1,4 +1,4 @@
-.mypost {
+.review {
   width: 95%;
   max-width: 500px;
   height: 500px;
@@ -29,7 +29,7 @@
 .mybtns > button {
   margin-right: 10px;
 }
-#comment {
+#review-content {
   height: 300px;
   font-size: 1.5rem;
 }
