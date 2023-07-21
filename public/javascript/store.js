@@ -8,7 +8,7 @@ const getStoreIdFromUrl = () => {
 };
 const storeId = getStoreIdFromUrl();
 
-// 서버로부터 주문 목록을 가져와 화면에 표시하는 함수
+// 서버로부터 데이터를 받아와서 붙여주는 함수
 const getStore = async () => {
   const response = await fetch(`/api/stores/${storeId}`);
   const orders = await response.json();
@@ -72,3 +72,8 @@ const getStore = async () => {
     console.log(error);
   }
 };
+
+const orderListBtn = document.getElementById('order-listBtn');
+orderListBtn.addEventListener('click', () => {
+  location.href = `/stores/${storeId}/orders`;
+});

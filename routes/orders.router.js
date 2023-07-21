@@ -5,6 +5,7 @@ const authMiddlware = require('../middlewares/auth-middleware');
 const { Menus, Orders } = require('../models');
 
 // (손님) 주문 등록 API
+// 내부 로직 수정해야합니다.
 router.post('/stores/:storeId/orders', async (req, res) => {
   try {
     const data = await Orders.create({
@@ -26,7 +27,7 @@ router.post('/stores/:storeId/orders', async (req, res) => {
 });
 
 // (사장) 주문 상세 페이지 주문 목록 조회 API
-router.get('/stores/:storeId/orders', authMiddlware, async (req, res) => {
+router.get('/stores/:storeId/orders', async (req, res) => {
   try {
     const { storeId } = req.params;
 
