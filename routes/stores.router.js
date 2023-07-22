@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Stores, Menus, Reviews } = require('../models');
+const { Stores, Menus, Reviews, Users } = require('../models');
 const { Sequelize } = require('sequelize');
 
 // 가게 상세 페이지 조회 api
@@ -17,7 +17,13 @@ router.get('/stores/:storeId', async (req, res) => {
         },
         {
           model: Reviews,
-          attributes: ['reviewContent', 'reviewUrl'],
+          attributes: ['reviewContent', 'reviewUrl', 'reviewRating', 'reviewId'],
+          order: [['createdAt', 'DESC']],
+
+          include: {
+            model: Users,
+            attributes: ['nickname'],
+          },
         },
       ],
     });
