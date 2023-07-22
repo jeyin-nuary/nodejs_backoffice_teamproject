@@ -34,6 +34,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      // storeSales: {
+      //   allowNull: false,
+      //   defaultValue: 0,
+      //   type: Sequelize.INTEGER,
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
