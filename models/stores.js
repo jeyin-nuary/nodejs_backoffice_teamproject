@@ -48,6 +48,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      // storeSales: {
+      //   allowNull: false,
+      //   defaultValue: 0,
+      //   type: DataTypes.INTEGER,
+      // },
       storeUrl: {
         type: DataTypes.STRING,
       },

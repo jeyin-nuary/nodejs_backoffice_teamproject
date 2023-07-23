@@ -3,14 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+      .white-text {
+        color: white;
+      }
+      .form-group {
+        margin-bottom: 40px;
+      }
+      .center-text {
+        text-align: center;
+      }
+      label {
+        margin-bottom: 10px;
+      }
+      .btn-space {
+        margin-right: 10px;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+      }
+      #orderForm {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 3px solid pink;
+        border-radius: 12px;
+        background-color: gray;
+      }
+      .form-group img {
+        width: 400px;
+        margin-left: 70px;
+        margin-top: 20px;
+      }
     </style>
     <script src="https://kit.fontawesome.com/5dcc34aea3.js" crossorigin="anonymous"></script>
     <script src="./header.js" defer></script>
     <script src="./order_Page.js" defer></script>
     <link rel="stylesheet" href="./header.css" type="text/css" />
-    <title>Main Page</title>
+    <title>주문페이지 입니다!</title>
   </head>
 
   <body>
@@ -36,13 +75,58 @@
         <i class="fa-solid fa-bars"></i>
       </a>
     </nav>
+    <h1 class="my-4 white-text center-text" id="storeName"></h1>
     <form id="orderForm">
-      <input type="number" id="storeId" placeholder="Store ID" required />
-      <input type="number" id="menuId" placeholder="Menu ID" required />
-      <input type="number" id="orderQuantity" placeholder="Order Quantity" required />
-      <input type="text" id="deliveryReq" placeholder="Delivery Request" />
-      <input type="text" id="orderStatus" placeholder="Order Status" required />
-      <button type="submit">Place Order</button>
+      <form id="store-register-form">
+        <div class="form-group">
+          <label for="menuId" class="white-text"> 메뉴 🥣</label>
+          <select class="form-control" id="menuId" name="menuId" required></select>
+          <img src="" alt="메뉴사진" id="menuImg" />
+        </div>
+        <div class="form-group">
+          <label for="menuInfo" class="white-text"> 메뉴 소개 </label>
+          <p type="text" class="form-control" id="menuInfo" name="menuInfo"></p>
+        </div>
+        <div class="form-group">
+          <label for="orderQuantity" class="white-text"> 수량✅</label>
+          <input
+            data-price="0"
+            type="number"
+            class="form-control"
+            id="orderQuantity"
+            name="orderQuantity"
+            min="1"
+            value="1"
+          />
+        </div>
+        <div class="form-group">
+          <label for="deliveryReq" class="white-text"> 요청사항😍</label>
+          <input type="text" class="form-control" id="deliveryReq" name="deliveryReq" />
+        </div>
+        <div class="form-group">
+          <label for="menuPrice" class="white-text"> 메뉴 가격 💸 </label>
+          <p type="text" class="form-control" id="menuPrice" name="menuPrice"></p>
+        </div>
+        <div class="form-group">
+          <label for="totalPrice" class="white-text"> 총 결제금액 💲 </label>
+          <p type="text" class="form-control" id="totalPrice" name="totalPrice"></p>
+        </div>
+        <div class="button-container">
+          <button type="submit" class="btn btn-primary">결제</button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="location.href='http://localhost:3000/'"
+          >
+            <!-- 위에 href= 뒤부터는 취소버튼 후 돌아갈 페이지 주소 넣으면 됨-->
+            취소
+          </button>
+        </div>
+      </form>
     </form>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -14,7 +14,7 @@ router.get('/stores/:storeId', async (req, res) => {
       include: [
         {
           model: Menus,
-          attributes: ['menuName', 'menuImg', 'menuPrice'],
+          attributes: ['menuName', 'menuImg', 'menuPrice', 'menuInfo', 'menuId'],
         },
         {
           model: Reviews,
