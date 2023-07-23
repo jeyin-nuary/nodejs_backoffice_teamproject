@@ -13,9 +13,10 @@ router.post('/signUp/confirm', async (req, res) => {
   const { email } = await req.body;
 
   try {
-    if (!email) {
-      // 이건 정규표현식 사용해서 나중에 고치시고
-      return res.status(400).json({ errorMessage: '이메일을 입력해주세요' });
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ errorMessage: '이메일 주소가 올바르지 않습니다.' });
     }
 
     // 중복되는 이메일 찾기
@@ -183,58 +184,6 @@ router.post('/login', async (req, res) => {
         .cookie('refreshToken', newRefreshToken, { httpOnly: true })
         .json({ userId, newAccessToken, message: '로그인 되었습니다.' });
     }
-
-    //     // 1: Access Token과 Refresh Token 모두 만료된 경우
-    //     try {
-    //       jwt.verify(refreshToken, process.env.REFRESH_KEY);
-    //     } catch (error) {
-    //       if (error.name === 'TokenExpiredError') {
-    //         const decodedRefreshToken = jwt.decode(refreshToken);
-    //         const userId = decodedRefreshToken.userId;
-
-    //         const newAccessToken = generateAccessToken(userId);
-    //         const newRefreshToken = generateRefreshToken(userId);
-
-    //         return res
-    //           .cookie('accessToken', newAccessToken, { httpOnly: true })
-    //           .cookie('refreshToken', newRefreshToken, { httpOnly: true })
-    //           .json({
-    //             userId,
-    //             newAccessToken,
-    //             message: 'ACCESS TOKEN과 REFRESH TOKEN이 갱신되었습니다.',
-    //           });
-    //       }
-    //     }
-    //     // 2: Access Token은 만료됐지만 Refresh Token은 유효한 경우
-    //     try {
-    //       jwt.verify(req.cookies.accessToken, process.env.ACCESS_KEY);
-    //     } catch (error) {
-    //       if (error.name === 'TokenExpiredError') {
-    //         const decodedRefreshToken = jwt.decode(refreshToken);
-    //         const userId = decodedRefreshToken.userId;
-
-    //         const newAccessToken = generateAccessToken(userId);
-
-    //         return res.cookie('accessToken', newAccessToken, { httpOnly: true }).json({
-    //           userId,
-    //           newAccessToken,
-    //           message: 'ACCESS TOKEN이 갱신되었습니다.',
-    //         });
-    //       }
-    //     }
-
-    //     // 3: Access Token과 Refresh Token 모두 유효한 경우
-    //     if (refreshToken) {
-    //       const decodedAccessToken = jwt.decode(req.cookies.accessToken);
-    //       const userId = decodedAccessToken.userId;
-    //       console.log('ACCESS TOKEN과 REFRESH TOKEN이 모두 유효합니다.');
-
-    //       res.status(201).json({
-    //         userId,
-    //         accessToken,
-    //         message: 'ACCESS TOKEN과 REFRESH TOKEN이 모두 유효합니다.',
-    //       });
-    //     }
   } catch (error) {
     console.log(error);
     res.status(500).json({ errorMessage: '로그인 오류가 발생했습니다.' });
