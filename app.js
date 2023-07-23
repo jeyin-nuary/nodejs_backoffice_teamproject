@@ -4,8 +4,6 @@ const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
 
-require('dotenv').config();
-
 const authRouter = require('./routes/auth.router');
 const menuRouter = require('./routes/menus.router');
 const orderRouter = require('./routes/orders.router');
@@ -14,6 +12,8 @@ const storeListRouter = require('./routes/stores.router');
 
 app.use(express.json()); // json 파싱
 app.use(cookieParser()); // 쿠키 파싱
+
+app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static('public'));
 app.use('/api', [menuRouter, storeListRouter, orderRouter, authRouter]);

@@ -8,51 +8,55 @@ const nodemailer = require('nodemailer');
 
 require('dotenv').config();
 
-// 회원가입 페이지 띄우기
-router.get('/signup', async (req, res) => {
-  res.render('signup');
-});
-
 // 이메일 인증 메일 전송
 router.post('/signUp/confirm', async (req, res) => {
-  const { email } = req.body;
+  const { email } = await req.body;
 
-  // 중복되는 이메일 찾기
-  const overlappedEmail = await Users.findOne({ where: { email } });
-  if (overlappedEmail) {
-    return res.status(400).json({ message: '이미 존재하는 이메일입니다.' });
-  }
+  try {
+    if (!email) {
+      // 이건 정규표현식 사용해서 나중에 고치시고
+      return res.status(400).json({ errorMessage: '이메일을 입력해주세요' });
+    }
 
-  // 이메일 인증 번호 생 성
-  const AuthCode = String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
+    // 중복되는 이메일 찾기
+    const overlappedEmail = await Users.findOne({ where: { email } });
+    if (overlappedEmail) {
+      return res.status(400).json({ message: '이미 존재하는 이메일입니다.' });
+    }
 
-  // 생성한 이메일 인증 번호 저장
-  await AuthMails.create({
-    email,
-    authCode: AuthCode,
-  });
+    // 이메일 인증 번호 생 성
+    const AuthCode = String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
 
-  // 이메일 인증: 메일 전송
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-
-    auth: {
-      user: process.env.admin_email, // 발송자 이메일
-      pass: process.env.admin_password, // 발송자 비밀번호
-    },
-  });
-
-  const main = async () => {
-    await transporter.sendMail({
-      from: 'NODEKING',
-      to: email,
-      subject: 'NODEKING 배달서비스 회원가입 이메일 인증',
-      html: `<h1>인증번호를 입력해 주세요.</h1><br><br>${AuthCode}`,
+    // 생성한 이메일 인증 번호 저장
+    await AuthMails.create({
+      email,
+      authCode: AuthCode,
     });
-  };
 
-  main();
-  res.status(201).json({ message: '인증번호가 전송되었습니다.' });
+    // 이메일 인증: 메일 전송
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+
+      auth: {
+        user: process.env.admin_email, // 발송자 이메일
+        pass: process.env.admin_password, // 발송자 비밀번호
+      },
+    });
+
+    const main = async () => {
+      await transporter.sendMail({
+        from: 'NODEKING',
+        to: email,
+        subject: 'NODEKING 배달서비스 회원가입 이메일 인증',
+        html: `<h1>인증번호를 입력해 주세요.</h1><br><br>${AuthCode}`,
+      });
+    };
+
+    main();
+    res.status(201).json({ message: '인증번호가 전송되었습니다.' });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // 회원가입 api
@@ -153,6 +157,7 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const { refreshToken, accessToken } = req.cookies;
+    console.log(email, password);
 
     const user = await Users.findOne({ where: { email } });
     const userId = user.userId;
@@ -169,7 +174,7 @@ router.post('/login', async (req, res) => {
     }
 
     // 처음 로그인
-    if (!refreshToken) {
+    if (!refreshToken || !accessToken) {
       const newAccessToken = generateAccessToken(userId);
       const newRefreshToken = generateRefreshToken(userId);
 
@@ -179,60 +184,60 @@ router.post('/login', async (req, res) => {
         .json({ userId, newAccessToken, message: '로그인 되었습니다.' });
     }
 
-    // 1: Access Token과 Refresh Token 모두 만료된 경우
-    try {
-      jwt.verify(refreshToken, process.env.REFRESH_KEY);
-    } catch (error) {
-      if (error.name === 'TokenExpiredError') {
-        const decodedRefreshToken = jwt.decode(refreshToken);
-        const userId = decodedRefreshToken.userId;
+    //     // 1: Access Token과 Refresh Token 모두 만료된 경우
+    //     try {
+    //       jwt.verify(refreshToken, process.env.REFRESH_KEY);
+    //     } catch (error) {
+    //       if (error.name === 'TokenExpiredError') {
+    //         const decodedRefreshToken = jwt.decode(refreshToken);
+    //         const userId = decodedRefreshToken.userId;
 
-        const newAccessToken = generateAccessToken(userId);
-        const newRefreshToken = generateRefreshToken(userId);
+    //         const newAccessToken = generateAccessToken(userId);
+    //         const newRefreshToken = generateRefreshToken(userId);
 
-        return res
-          .cookie('accessToken', newAccessToken, { httpOnly: true })
-          .cookie('refreshToken', newRefreshToken, { httpOnly: true })
-          .json({
-            userId,
-            newAccessToken,
-            message: 'ACCESS TOKEN과 REFRESH TOKEN이 갱신되었습니다.',
-          });
-      }
-    }
-    // 2: Access Token은 만료됐지만 Refresh Token은 유효한 경우
-    try {
-      jwt.verify(req.cookies.accessToken, process.env.ACCESS_KEY);
-    } catch (error) {
-      if (error.name === 'TokenExpiredError') {
-        const decodedRefreshToken = jwt.decode(refreshToken);
-        const userId = decodedRefreshToken.userId;
+    //         return res
+    //           .cookie('accessToken', newAccessToken, { httpOnly: true })
+    //           .cookie('refreshToken', newRefreshToken, { httpOnly: true })
+    //           .json({
+    //             userId,
+    //             newAccessToken,
+    //             message: 'ACCESS TOKEN과 REFRESH TOKEN이 갱신되었습니다.',
+    //           });
+    //       }
+    //     }
+    //     // 2: Access Token은 만료됐지만 Refresh Token은 유효한 경우
+    //     try {
+    //       jwt.verify(req.cookies.accessToken, process.env.ACCESS_KEY);
+    //     } catch (error) {
+    //       if (error.name === 'TokenExpiredError') {
+    //         const decodedRefreshToken = jwt.decode(refreshToken);
+    //         const userId = decodedRefreshToken.userId;
 
-        const newAccessToken = generateAccessToken(userId);
+    //         const newAccessToken = generateAccessToken(userId);
 
-        return res.cookie('accessToken', newAccessToken, { httpOnly: true }).json({
-          userId,
-          newAccessToken,
-          message: 'ACCESS TOKEN이 갱신되었습니다.',
-        });
-      }
-    }
+    //         return res.cookie('accessToken', newAccessToken, { httpOnly: true }).json({
+    //           userId,
+    //           newAccessToken,
+    //           message: 'ACCESS TOKEN이 갱신되었습니다.',
+    //         });
+    //       }
+    //     }
 
-    // 3: Access Token과 Refresh Token 모두 유효한 경우
-    if (refreshToken) {
-      const decodedAccessToken = jwt.decode(req.cookies.accessToken);
-      const userId = decodedAccessToken.userId;
-      console.log('ACCESS TOKEN과 REFRESH TOKEN이 모두 유효합니다.');
+    //     // 3: Access Token과 Refresh Token 모두 유효한 경우
+    //     if (refreshToken) {
+    //       const decodedAccessToken = jwt.decode(req.cookies.accessToken);
+    //       const userId = decodedAccessToken.userId;
+    //       console.log('ACCESS TOKEN과 REFRESH TOKEN이 모두 유효합니다.');
 
-      res.status(201).json({
-        userId,
-        accessToken,
-        message: 'ACCESS TOKEN과 REFRESH TOKEN이 모두 유효합니다.',
-      });
-    }
+    //       res.status(201).json({
+    //         userId,
+    //         accessToken,
+    //         message: 'ACCESS TOKEN과 REFRESH TOKEN이 모두 유효합니다.',
+    //       });
+    //     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: '로그인 오류가 발생했습니다.' });
+    res.status(500).json({ errorMessage: '로그인 오류가 발생했습니다.' });
   }
 });
 

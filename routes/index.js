@@ -7,4 +7,14 @@ router.get('/stores/:storeId/orders', (req, res) => {
   res.redirect(`/adminOrderPage.html?storeId=${storeId}`);
 });
 
+// signUp.html 경로
+router.get('/signUp', (req, res) => {
+  res.redirect(`/signUp.html`);
+});
+
+// login.html 경로
+router.get('/login', (req, res) => {
+  res.redirect(`/login.html`);
+});
+
 module.exports = router;
