@@ -46,7 +46,7 @@ router.patch('/orders/:orderId/change', authMiddlware, async (req, res) => {
 });
 
 // 주문 요청 API
-router.post('/stores/:storeId/menus/:menuId/order', middleware, async (req, res) => {
+router.post('/stores/:storeId/menus/:menuId/order', authMiddlware, async (req, res) => {
   const { userId } = res.locals.user;
   const { storeId, menuId } = req.params;
   const { orderQuantity, deliveryReq, orderStatus } = req.body;
@@ -103,7 +103,7 @@ router.post('/stores/:storeId/menus/:menuId/order', middleware, async (req, res)
   }
 });
 // 주문 보기 API
-router.get('/stores/:storeId/order', middleware, async (req, res) => {
+router.get('/stores/:storeId/order', authMiddlware, async (req, res) => {
   try {
     const { userId } = res.locals.user;
     const { storeId } = req.params;
@@ -125,7 +125,7 @@ router.get('/stores/:storeId/order', middleware, async (req, res) => {
 });
 
 // 주문 삭제 API
-router.delete('/stores/:storeId/menus/:menuId/order/:orderId', middleware, async (req, res) => {
+router.delete('/stores/:storeId/menus/:menuId/order/:orderId', authMiddlware, async (req, res) => {
   const { userId } = res.locals.user;
   const { orderId, storeId } = req.params;
   const ts = await sequelize.transaction();
