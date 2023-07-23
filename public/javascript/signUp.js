@@ -21,9 +21,9 @@ const confirmBtn = document.getElementById('confirm');
 confirmBtn.addEventListener('click', sendEmail);
 
 // 회원가입 정보를 서버로 전송
-async function signup(reg) {
+async function signup(req) {
   try {
-    reg.preventDefault();
+    req.preventDefault();
     const email = document.getElementById('email').value;
     const authCode = document.getElementById('authCode').value;
     const nickname = document.getElementById('nickname').value;
@@ -53,7 +53,7 @@ async function signup(reg) {
       location.href = '/login';
     } else {
       alert(data.errorMessage);
-      location.reload();
+      // location.reload();
     }
   } catch (error) {
     console.log(error);

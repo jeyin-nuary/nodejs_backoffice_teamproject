@@ -22,7 +22,7 @@ router.post('/signUp/confirm', async (req, res) => {
     // 중복되는 이메일 찾기
     const overlappedEmail = await Users.findOne({ where: { email } });
     if (overlappedEmail) {
-      return res.status(400).json({ message: '이미 존재하는 이메일입니다.' });
+      return res.status(400).json({ errorMessage: '이미 존재하는 이메일입니다.' });
     }
 
     // 이메일 인증 번호 생 성

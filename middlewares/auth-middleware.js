@@ -72,7 +72,7 @@ try {
 if (refreshToken) {
   const decodedAccessToken = jwt.decode(req.cookies.accessToken);
   const userId = decodedAccessToken.userId;
-  console.log('ACCESS TOKEN과 REFRESH TOKEN이 모두 유효합니다.');
+  // console.log('ACCESS TOKEN과 REFRESH TOKEN이 모두 유효합니다.');
 
   res.status(201).json({
     userId,
