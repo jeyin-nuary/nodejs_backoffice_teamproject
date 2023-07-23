@@ -77,8 +77,8 @@ router.post('/stores/:storeId/menus/:menuId/order', middleware, async (req, res)
     storeOwner.userPoints += totalPrice;
     await storeOwner.save({ transaction: ts });
 
-    store.storeSales += totalPrice;
-    await store.save({ transaction: ts });
+    // store.storeSales += totalPrice;
+    // await store.save({ transaction: ts });
 
     await Orders.create(
       {
@@ -96,32 +96,11 @@ router.post('/stores/:storeId/menus/:menuId/order', middleware, async (req, res)
 
     await ts.commit();
 
-    await res.status(200).json({ message: '주문이 성공적으로 완료되었습니다.' });
+    res.status(200).json({ message: '주문이 성공적으로 완료되었습니다.' });
   } catch (err) {
     console.error(err);
     await ts.rollback();
     res.status(400).json({ message: '예기치 않은 오류로 주문이 실패하였습니다.' });
-  }
-});
-// 주문 보기 API
-router.get('/stores/:storeId/order', middleware, async (req, res) => {
-  try {
-    const { userId } = res.locals.user;
-    const { storeId } = req.params;
-
-    const getorder = await Orders.findAll({
-      where: { storeId, userId },
-      include: [
-        {
-          model: Menus,
-          attributes: ['menuName', 'menuImg', 'menuPrice'],
-        },
-      ],
-    });
-    res.status(200).json(getorder);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ errorMessage: '주문 목록 조회에 실패했습니다.' });
   }
 });
 
@@ -163,4 +142,27 @@ router.delete('/stores/:storeId/menus/:menuId/order/:orderId', middleware, async
     }
   }
 });
+
+// 주문 보기 API
+router.get('/stores/:storeId/order', middleware, async (req, res) => {
+  try {
+    const { userId } = res.locals.user;
+    const { storeId } = req.params;
+
+    const getorder = await Orders.findAll({
+      where: { storeId, userId },
+      include: [
+        {
+          model: Menus,
+          attributes: ['menuName', 'menuImg', 'menuPrice'],
+        },
+      ],
+    });
+    res.status(200).json(getorder);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ errorMessage: '주문 목록 조회에 실패했습니다.' });
+  }
+});
+
 module.exports = router;
