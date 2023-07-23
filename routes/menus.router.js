@@ -27,8 +27,8 @@ router.post('/stores/:storeId/menus', async (req, res) => {
     if (!store) return res.status(404).json({ message: '가게가 존재하지 않습니다.' });
     const existMenu = await Menus.findOne({ where: { menuName } });
     if (existMenu) return res.status(400).json({ message: '메뉴가 이미 존재합니다.' });
-
-    await Menus.create({ storeId, menuName, menuPrice, menuInfo });
+    const menuimg = null;
+    await Menus.create({ storeId, menuName, menuPrice, menuInfo, menuimg });
     res.status(200).json({ message: '메뉴가 등록되었습니다.' });
   } catch (err) {
     console.error(err);
