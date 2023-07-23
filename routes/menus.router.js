@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Menus, Stores } = require('../models/');
+const authMiddlware = require('../middlewares/auth-middleware');
 // const upload = require('../middlewares/uploader');
 
 // 메뉴 조회
@@ -19,7 +20,7 @@ router.get('/stores/:storeId/menus', async (req, res) => {
 });
 
 // 메뉴 생성
-router.post('/stores/:storeId/menus', async (req, res) => {
+router.post('/stores/:storeId/menus', authMiddlware, async (req, res) => {
   try {
     const { storeId } = req.params;
     const { menuName, menuPrice, menuInfo } = req.body;
@@ -93,7 +94,7 @@ router.post('/stores/:storeId/menus', async (req, res) => {
 // });
 
 // 메뉴 수정
-router.put('/stores/:storeId/menus/:menuId', async (req, res) => {
+router.put('/stores/:storeId/menus/:menuId', authMiddlware, async (req, res) => {
   try {
     const { storeId, menuId } = req.params;
     const { menuName, menuPrice, menuInfo } = req.body;
@@ -111,7 +112,7 @@ router.put('/stores/:storeId/menus/:menuId', async (req, res) => {
 });
 
 // 메뉴 삭제
-router.delete('/stores/:storeId/menus/:menuId', async (req, res) => {
+router.delete('/stores/:storeId/menus/:menuId', authMiddlware, async (req, res) => {
   try {
     const { storeId, menuId } = req.params;
     const store = await Stores.findOne({ where: { storeId } });

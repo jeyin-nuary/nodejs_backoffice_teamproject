@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { Reviews, Stores, Orders } = require('../models');
 const { Op } = require('sequelize');
-const authMiddleware = require('../middlewares/auth-middleware');
+const authMiddlware = require('../middlewares/auth-middleware');
 
 // 리뷰 작성 API
-router.post('/stores/:storeId/reviews', async (req, res) => {
+router.post('/stores/:storeId/reviews', authMiddlware, async (req, res) => {
   try {
     const { storeId } = req.params;
-    const userId = 1; // 로그인 기능이 구현되지 않아 하드코딩
+    const { userId } = res.locals.user;
     const { reviewContent, reviewUrl, reviewRating } = req.body;
 
     const storeExists = await Stores.findOne({ where: { storeId } });
@@ -42,10 +42,11 @@ router.post('/stores/:storeId/reviews', async (req, res) => {
 });
 
 // 리뷰 수정 API
-router.patch('/stores/:storeId/reviews/:reviewId', async (req, res) => {
+router.patch('/stores/:storeId/reviews/:reviewId', authMiddlware, async (req, res) => {
   try {
     const { storeId, reviewId } = req.params;
-    const userId = 1; // 로그인 기능이 구현되지 않아 하드코딩
+    const { userId } = res.locals.user;
+
     const { reviewContent, reviewUrl, reviewRating } = req.body;
 
     const storeExists = await Stores.findOne({ where: { storeId } });
@@ -73,10 +74,10 @@ router.patch('/stores/:storeId/reviews/:reviewId', async (req, res) => {
 });
 
 // 리뷰 삭제 API
-router.delete('/stores/:storeId/reviews/:reviewId', async (req, res) => {
+router.delete('/stores/:storeId/reviews/:reviewId', authMiddlware, async (req, res) => {
   try {
     const { storeId, reviewId } = req.params;
-    const userId = 1; // 로그인 기능이 구현되지 않아 하드코딩
+    const { userId } = res.locals.user;
 
     const storeExists = await Stores.findOne({ where: { storeId } });
     const reviewExists = await Reviews.findOne({ where: { reviewId } });

@@ -24,6 +24,16 @@ router.get('/stores/:storeId/reviews/:reviewId', (req, res) => {
   res.redirect(`/reviewEdit.html?storeId=${storeId}&reviewId=${reviewId}`);
 });
 
+// storeRegister.html 경로
+router.get('/storeRegister', (req, res) => {
+  res.redirect(`/storeRegister.html`);
+});
+
+// storeList.html 경로
+router.get('/storeList', (req, res) => {
+  res.redirect(`/storeList.html `);
+});
+
 // signUp.html 경로
 router.get('/signUp', (req, res) => {
   res.redirect(`/signUp.html`);

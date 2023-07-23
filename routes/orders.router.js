@@ -4,7 +4,7 @@ const authMiddlware = require('../middlewares/auth-middleware');
 const { Menus, Orders } = require('../models');
 
 // (사장) 주문 상세 페이지 주문 목록 조회 API
-router.get('/stores/:storeId/orders', authMiddleware, async (req, res) => {
+router.get('/stores/:storeId/orders', authMiddlware, async (req, res) => {
   try {
     const { storeId } = req.params;
 
@@ -25,7 +25,7 @@ router.get('/stores/:storeId/orders', authMiddleware, async (req, res) => {
 });
 
 // 오더 상태 변경 API
-router.patch('/orders/:orderId/change', authMiddleware, async (req, res) => {
+router.patch('/orders/:orderId/change', authMiddlware, async (req, res) => {
   const { orderId } = req.params;
   const { orderStatus } = req.body;
 

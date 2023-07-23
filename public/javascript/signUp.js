@@ -18,10 +18,10 @@ async function sendEmail(event) {
       type: 'POST',
       url: '/api/signUp/confirm',
       data: { email },
-      success: (data) => {
+      success: data => {
         alert(data.message);
       },
-      error: (error) => {
+      error: error => {
         alert(error.responseJSON.errorMessage);
       },
     });
@@ -62,7 +62,7 @@ async function a(reg) {
     await response.json();
     if (response.ok) {
       alert('회원가입이 성공하였습니다!');
-      location.reload();
+      location.href = '/login';
     }
   } catch (error) {
     console.log(error);
