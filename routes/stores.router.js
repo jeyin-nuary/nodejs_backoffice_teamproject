@@ -14,7 +14,7 @@ router.get('/stores/:storeId', async (req, res) => {
       include: [
         {
           model: Menus,
-          attributes: ['menuName', 'menuImg', 'menuPrice', 'menuInFo'],
+          attributes: ['menuName', 'menuImg', 'menuPrice', 'menuInfo', 'menuId'],
         },
         {
           model: Reviews,
@@ -23,7 +23,7 @@ router.get('/stores/:storeId', async (req, res) => {
 
           include: {
             model: Users,
-            attributes: ['nickname'],
+            attributes: ['nickname', 'role'],
           },
         },
       ],
@@ -51,6 +51,13 @@ router.get('/storelists', async (req, res) => {
         // sequelize 문법으로 COUNT를 이용해 starRating 이라는 임시 이름으로 갯수를 계산하여 추가함
         [Sequelize.fn('COUNT', Sequelize.col('Stores.storeRating')), 'starRating'],
       ],
+      // JOIN : 조회를 할대 Users의 role 컬럼 추가
+      include: [
+        {
+          model: Users,
+          attributes: ['role'],
+        },
+      ],
       // order : createdAt 별로 내림차순, group: 'Stores.storeId별로 그룹화
       order: [['createdAt', 'DESC']],
       group: ['Stores.storeId'],
@@ -61,6 +68,7 @@ router.get('/storelists', async (req, res) => {
     return res.status(200).json({ data: storeList });
   } catch (err) {
     console.log(err.message);
+    res.status(500).json({ message: err.message });
   }
 });
 
@@ -79,12 +87,23 @@ router.post('/stores', authMiddleware, async (req, res) => {
     }
     if (!storeName) return res.status(403).json({ errorMessage: '가게 이름을 입력해주세요.' });
     if (!storeAddress) return res.status(403).json({ errorMessage: '가게 주소를 입력해주세요.' });
-    // 가게등록을 생성하고 DB에 저장하는 과정
+    // 일반 user와 role 구분완료 => 가게등록을 할때  role의 값이 1로 설정 findOne을 통해 role값을 가진 사용자를 찾고 반환
+    const getMaxRole = async () => {
+      const maxRoleUser = await Users.findOne({ order: [['role', 'DESC']] });
+      return maxRoleUser.role;
+    };
+    // maxRole 변수에 role 값 저장
+    let maxRole = await getMaxRole();
+
+    // console.log(maxRole);
+    // DB에 가게 등록 data 생성
     const storeRegister = await Stores.create({
       userId,
       storeName,
       storeAddress,
       storeUrl,
+      // 94번째 줄에서 선언한 maxRole 변수에 ++를 통해 0 -> 1로 증가시킴
+      role: maxRole++,
     });
     // 유효성 검사
     if (!storeRegister)
@@ -92,6 +111,7 @@ router.post('/stores', authMiddleware, async (req, res) => {
     return res.status(200).json({ data: storeRegister });
   } catch (err) {
     console.log(err.message);
+    res.status(500).json({ message: err.message });
   }
 });
 module.exports = router;
