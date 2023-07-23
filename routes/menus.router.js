@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Menus, Stores } = require('../models/');
-// const upload = require('../middlewares/uploader');
+const upload = require('../middlewares/uploader');
 
 // 메뉴 조회
 router.get('/stores/:storeId/menus', async (req, res) => {
@@ -38,59 +38,59 @@ router.post('/stores/:storeId/menus', async (req, res) => {
 
 // 메뉴 사진 추가
 
-// const AWS = require('aws-sdk');
-// require('dotenv').config();
+const AWS = require('aws-sdk');
+require('dotenv').config();
 
-// const s3 = new AWS.S3({
-//   region: process.env.REGION,
-//   accessKeyId: process.env.AWS_ACCESS_KEY,
-//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-// });
+const s3 = new AWS.S3({
+  region: process.env.REGION,
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
 
-// router.post('/stores/:storeId/menus/:menuId', upload, async (req, res) => {
-//   const { menuId } = req.params;
-//   const menu = await Menus.findOne({ where: { menuId } });
-//   console.log(menu.menuUrl);
-//   const decordURL = decodeURIComponent(menu.menuUrl);
-//   const imgUrl = decordURL.substring(56);
-//   console.log(imgUrl);
-//   if (menu.menuUrl === null) {
-//     const uploadimageUrl = req.file.location;
-//     console.log(uploadimageUrl);
-//     await Menus.update(
-//       { img: uploadimageUrl },
-//       {
-//         where: {
-//           menuId,
-//         },
-//       }
-//     );
-//   } else {
-//     s3.deleteObject(
-//       {
-//         Bucket: process.env.BUCKET_NAME,
-//         Key: imgUrl,
-//       },
-//       (err, data) => {
-//         if (err) {
-//           throw err;
-//         }
-//         console.log('s3 deleteObject ', data);
-//       }
-//     );
-//     const imageUrl = req.file.location;
-//     console.log(imageUrl);
-//     await Menus.update(
-//       { img: imageUrl },
-//       {
-//         where: {
-//           menuId,
-//         },
-//       }
-//     );
-//   }
-//   res.status(201).json({ Message: '사진이 변경되었습니다.' });
-// });
+router.post('/stores/:storeId/menus/:menuId', upload.single('image'), async (req, res) => {
+  const { menuId } = req.params;
+  const menu = await Menus.findOne({ where: { menuId } });
+  console.log(menu.menuImg);
+  const decordURL = decodeURIComponent(menu.menuImg);
+  const imgUrl = decordURL.substring(56);
+  console.log(imgUrl);
+  if (menu.menuImg === null) {
+    const uploadimageUrl = req.file.location;
+    console.log(uploadimageUrl);
+    await Menus.update(
+      { menuImg: uploadimageUrl },
+      {
+        where: {
+          menuId,
+        },
+      }
+    );
+  } else {
+    s3.deleteObject(
+      {
+        Bucket: process.env.BUCKET_NAME,
+        Key: imgUrl,
+      },
+      (err, data) => {
+        if (err) {
+          throw err;
+        }
+        console.log('s3 deleteObject ', data);
+      }
+    );
+    const imageUrl = req.file.location;
+    console.log(imageUrl);
+    await Menus.update(
+      { menuImg: imageUrl },
+      {
+        where: {
+          menuId,
+        },
+      }
+    );
+  }
+  res.status(201).json({ Message: '사진이 변경되었습니다.' });
+});
 
 // 메뉴 수정
 router.put('/stores/:storeId/menus/:menuId', async (req, res) => {

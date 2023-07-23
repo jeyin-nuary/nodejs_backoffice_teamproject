@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./header.js" defer></script>
+  <link rel="stylesheet" href="./header.css" type="text/css">
+  <link rel="stylesheet" href="./login.css" type="text/css">
+  <link rel="stylesheet" href="./adminOrderPage.css" type="text/css">
+  <title>Login</title>
+</head>
+
+<body>
+  <header id="myHeader"></header>
+  <div class="login-wrapper">
+    <h2>Login</h2>
+    <form method="post" action="/api/signup/confirm" id="login-form">
+      <input type="text" name="userName" placeholder="Email">
+      <input type="submit" value="Certified">
+    </form>
+    <form method="post" action="/api/signup" id="login-form">
+      <input type="password" name="userPassword" placeholder="Password">
+      <input type="password" name="userConfirmPassword" placeholder="ConfirmPassword">
+      <input type="submit" value="Login">
+    </form>
+  </div>
+</body>
+
+</html>

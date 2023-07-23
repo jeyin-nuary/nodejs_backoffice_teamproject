@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/5dcc34aea3.js" crossorigin="anonymous"></script>
+    <script src="./header.js" defer></script>
+    <link rel="stylesheet" href="./header.css" type="text/css">
+    <link rel="stylesheet" href="./review.css" type="text/css">
+    <script src="./javascript/reviewEdit.js" defer></script>
+    <title>Review</title>
+
+</head>
+
+<body>
+    <header id="myHeader"></header>
+
+    <div class="review">
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">별점</label>
+            <select class="form-select" id="star">
+                <option selected>-- 선택하기 --</option>
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+        <div class="form-floating">
+            <textarea id="review-img" class="form-control" placeholder="리뷰 이미지를 넣어주세요"></textarea>
+            <label for="floatingTextarea2">리뷰 이미지를 넣어주세요</label>
+        </div>
+        <div class="form-floating">
+            <textarea id="review-content" class="form-control" placeholder="리뷰를 작성하세요"></textarea>
+            <label for="floatingTextarea2">리뷰를 작성하세요</label>
+        </div>
+        <div class="mybtns">
+            <button id="save-btn" type="button" class="btn btn-dark">
+                SAVE
+            </button>
+            <button id="back-btn" type="button" class="btn btn-dark">
+                BACK
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

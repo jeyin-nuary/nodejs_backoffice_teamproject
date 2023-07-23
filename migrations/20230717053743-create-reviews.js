@@ -29,22 +29,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      orderId: {
-        references: {
-          model: 'Orders',
-          key: 'orderId',
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       reviewContent: {
         allowNull: false,
         type: Sequelize.STRING,
       },
       reviewUrl: {
         type: Sequelize.STRING,
+      },
+      reviewRating: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

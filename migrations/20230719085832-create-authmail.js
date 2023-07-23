@@ -2,37 +2,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Menus', {
-      menuId: {
+    await queryInterface.createTable('AuthMails', {
+      emailId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      storeId: {
-        references: {
-          model: 'Stores',
-          key: 'storeId',
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      menuName: {
+      email: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      menuImg: {
-        type: Sequelize.STRING,
-      },
-      menuInfo: {
+      authCode: {
         allowNull: false,
         type: Sequelize.STRING,
-      },
-      menuPrice: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -45,6 +28,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Menus');
+    await queryInterface.dropTable('AuthMails');
   },
 };
