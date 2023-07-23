@@ -168,3 +168,13 @@ const moveReviewPage = document.getElementById('review-add');
 moveReviewPage.addEventListener('click', () => {
   location.href = `/stores/${storeId}/reviews`;
 });
+
+// 메뉴 등록 페이지로 이동
+document.getElementById('menuCrPgBtn').addEventListener('click', function() {
+  window.location.href = `menuCr.html?storeId=${storeId}`;
+});
+
+// 메뉴 수정 페이지로 이동
+document.getElementById('menuMdPgBtn').addEventListener('click', function() {
+  window.location.href = `menuDetail.html?storeId=${storeId}`;
+});

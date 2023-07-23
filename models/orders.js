@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'menuId',
         foreignKey: 'menuId',
       });
+      this.hasMany(models.Reviews, {
+        sourceKey: 'orderId',
+        foreignKey: 'orderId',
+      });
     }
   }
   Orders.init(
