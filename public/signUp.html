@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./auth.css" type="text/css">
 
     <!-- 외부 JavaScript 파일들을 지연 로딩(defer) -->
-    <script src="./header.js" defer></script>
+    <script src="./javascript/header.js" defer></script>
     <script src="./javascript/signUp.js" defer></script>
 
     <!-- 웹 페이지의 제목(title) -->
@@ -36,8 +36,14 @@
             <div class="container">
                 <div class="signup-content">
                     <div class="signup-form">
+                        <div class="f-container">
+                            <p>Sign Up<!-- 인증코드 받기 버튼 -->
+                                <button class="GetAuthCode-btn"> Get AuthCode</button>
+                            </p>
+                        </div>
                         <!-- 회원 가입을 위한 사용자 정보를 입력하는 폼 -->
-                        <h2 class="form-title">Sign up</h2>
+                        <h2 class="form-title">
+                        </h2>
                         <form method="POST" class="register-form" id="register-form">
                             <!-- 이메일 입력 필드 -->
                             <div class="form-group">
@@ -86,16 +92,14 @@
                     </div>
 
                     <div class="second-container">
-                        <div class="form-group form-button" id="GetAuthCode-btn-container">
-                            <!-- 인증코드 받기 버튼 -->
-                            <input type="submit" name="confirm" id="confirm" class="form-submit" value="Get AuthCode" />
-                        </div>
-
                         <div class="signup-image">
                             <figure><img
                                     src="https://cdn.icon-icons.com/icons2/2822/PNG/512/food_delivery_man_icon_179638.png"
                                     alt="sign up image"></figure>
-                            <a style="color: black;" href="login.html">Already have an account?</a>
+                            <div class="create-href">
+                                <a href="login.html">Already have an account?</a>
+                            </div>
+
                         </div>
                     </div>
 

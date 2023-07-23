@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Menus, Stores } = require('../models/');
 const authMiddlware = require('../middlewares/auth-middleware');
-// const upload = require('../middlewares/uploader');
+const upload = require('../middlewares/uploader');
 
 // 메뉴 조회
 router.get('/stores/:storeId/menus', async (req, res) => {

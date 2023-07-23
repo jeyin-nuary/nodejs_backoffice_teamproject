@@ -14,6 +14,27 @@ list-type-ulli,
   margin: 0;
   padding: 0;
 } */
+.create-href {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+}
+.create-href a {
+  color: rgb(0, 0, 0);
+}
+figure {
+  margin: 0;
+}
+#login-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
 
 a:focus,
 a:active {
@@ -149,11 +170,54 @@ body {
   -o-align-items: center;
   -ms-align-items: center;
 }
+button {
+  font-size: 1rem;
+}
+.GetAuthCode-btn:hover {
+  background-color: #4292dc;
+}
+.GetAuthCode-btn {
+  width: 140px;
+  height: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #88b5df;
+  padding: 15px;
+  border-radius: 20px;
+  border: none !important;
+  color: white;
+}
 
-#GetAuthCode-btn-container {
+.f-container {
+  width: auto;
+  flex-direction: column;
+}
+
+.f-container div {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.f-container {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.f-container button {
+  margin-left: 20px;
+}
+
+.f-container p {
+  margin-right: 10px;
+  width: 280px;
+  font-size: 2rem;
+}
+
+#confirm {
+  width: 100;
 }
 
 .second-container {
@@ -394,6 +458,13 @@ label.valid:after {
     -webkit-justify-content: center;
     -o-justify-content: center;
     -ms-justify-content: center;
+  }
+  .f-container {
+    flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -o-flex-direction: column;
+    -ms-flex-direction: column;
   }
 
   .signup-form {

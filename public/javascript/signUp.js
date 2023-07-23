@@ -1,19 +1,7 @@
 async function sendEmail(event) {
   try {
-    //why why
     event.preventDefault();
     const email = document.getElementById('email').value;
-    const authCode = document.getElementById('authCode').value;
-    const nickname = document.getElementById('nickname').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-    const address = document.getElementById('address').value;
-
-    console.log(email);
-
-    const result = {
-      email: email,
-    };
     await $.ajax({
       type: 'POST',
       url: '/api/signUp/confirm',
@@ -33,7 +21,7 @@ const confirmBtn = document.getElementById('confirm');
 confirmBtn.addEventListener('click', sendEmail);
 
 // 회원가입 정보를 서버로 전송
-async function a(reg) {
+async function signup(reg) {
   try {
     reg.preventDefault();
     const email = document.getElementById('email').value;
@@ -59,14 +47,17 @@ async function a(reg) {
       },
       body: JSON.stringify(signUp),
     });
-    await response.json();
-    if (response.ok) {
-      alert('회원가입이 성공하였습니다!');
+    const data = await response.json();
+    if (data.message) {
+      alert(data.message, data.newUser);
       location.href = '/login';
+    } else {
+      alert(data.errorMessage);
+      location.reload();
     }
   } catch (error) {
     console.log(error);
   }
 }
 const signupBtn = document.getElementById('signup');
-signupBtn.addEventListener('click', a);
+signupBtn.addEventListener('click', signup);

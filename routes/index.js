@@ -31,7 +31,7 @@ router.get('/storeRegister', (req, res) => {
 
 // storeList.html 경로
 router.get('/storeList', (req, res) => {
-  res.redirect(`/storeList.html `);
+  res.redirect(`/storeList.html`);
 });
 
 // signUp.html 경로
@@ -43,10 +43,5 @@ router.get('/signUp', (req, res) => {
 router.get('/login', (req, res) => {
   res.redirect('/login.html');
 });
-
-// // logout.html 경로
-// router.get('/logout', (req, res) => {
-//   res.redirect('/logout.html');
-// });
 
 module.exports = router;

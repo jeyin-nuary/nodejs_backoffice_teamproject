@@ -129,8 +129,6 @@ const getStore = async () => {
 
   // 리뷰 삭제 함수
   const deleteReview = async reviewId => {
-    console.log(reviewId);
-
     const response = await fetch(`/api/stores/${storeId}/reviews/${reviewId}`, {
       method: 'DELETE',
     });

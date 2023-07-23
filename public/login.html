@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/5dcc34aea3.js" crossorigin="anonymous"></script>
 
     <!-- 외부 JavaScript 파일을 지연 로딩(defer) -->
-    <script src="./header.js" defer></script>
+    <script src="./javascript/header.js" defer></script>
     <script src="./javascript/login.js" defer></script> <!--현재 login.js 파일이 없으니까 만들어야 함-->
 
     <!-- 외부 CSS 파일들 -->
@@ -35,7 +35,9 @@
                     <!-- 로그인 이미지와 회원 가입 링크 -->
                     <div class="signin-image">
                         <figure><img src="./img/images/signin2-img.png.png" alt="sign in image"></figure>
-                        <a style="color: black;" href="signUp.html">Create an account</a>
+                        <div class="create-href">
+                            <a href="signUp.html">Create an account</a>
+                        </div>
                         </figure>
                     </div>
 
@@ -65,12 +67,8 @@
                             </div>-->
 
                             <!-- 로그인 버튼 -->
-                            <div class="form-group form-button">
-
+                            <div id="login-btn-container" class="form-group form-button">
                                 <button type="button" id="login-btn" class="form-submit"> Log In</button>
-
-                                <button type="button" id="logout-btn" class="form-submit"> Log Out</button>
-
                             </div>
 
 
