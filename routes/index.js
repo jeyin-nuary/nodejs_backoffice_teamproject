@@ -24,4 +24,14 @@ router.get('/stores/:storeId/reviews/:reviewId', (req, res) => {
   res.redirect(`/reviewEdit.html?storeId=${storeId}&reviewId=${reviewId}`);
 });
 
+// signUp.html 경로
+router.get('/signUp', (req, res) => {
+  res.redirect(`/signUp.html`);
+});
+
+// login.html 경로
+router.get('/login', (req, res) => {
+  res.redirect(`/login.html`);
+});
+
 module.exports = router;

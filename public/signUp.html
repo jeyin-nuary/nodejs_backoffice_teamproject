@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 문자 인코딩과 반응형 디자인 설정을 지정하는 메타 태그 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- jQuery 라이브러리를 CDN에서 로드 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome 아이콘 키트를 CDN에서 로드 -->
+    <script src="https://kit.fontawesome.com/5dcc34aea3.js" crossorigin="anonymous"></script>
+
+    <!-- 외부 CSS 파일들 -->
+    <link rel="stylesheet" href="./header.css" type="text/css">
+    <link rel="stylesheet" href="./auth.css" type="text/css">
+
+    <!-- 외부 JavaScript 파일들을 지연 로딩(defer) -->
+    <script src="./header.js" defer></script>
+    <script src="./signup.js" defer></script>
+
+    <!-- 웹 페이지의 제목(title) -->
+    <title>signUp page</title>
+</head>
+
+<body>
+    <!-- 헤더 엘리먼트(header) with the id "myHeader" -->
+    <header id="myHeader"></header>
+
+    <div class="main">
+        <!-- 회원 가입 내용을 담고 있는 섹션 -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <!-- 회원 가입을 위한 사용자 정보를 입력하는 폼 -->
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            <!-- 이메일 입력 필드 -->
+                            <div class="form-group">
+                                <input type="text" id="email" placeholder="Your Email">
+                                <!--<label for="email"><i class="zmdi zmdi-email"></i></label> -->
+                                <!--  <input type="email" name="user-email" id="email" placeholder="이메일 입력" />-->
+                            </div>
+
+                            <!-- 인증 코드 입력 필드 -->
+                            <div class="form-group">
+                                <label for="authCode"><i class="zmdi zmdi-email"></i></label>
+                                <input type="text" name="authCode" id="authCode" placeholder="Your AuthCode" />
+                            </div>
+
+                            <!-- 닉네임 입력 필드 -->
+                            <div class="form-group">
+                                <label for="nickname"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="nickname" id="nickname" placeholder="Your Nickname" />
+                            </div>
+
+                            <!-- 비밀번호 입력 필드 -->
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="password" placeholder="Password" />
+                            </div>
+
+                            <!-- 비밀번호 확인 입력 필드 -->
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="re_pass" id="confirm-password"
+                                    placeholder="Repeat Your Password" />
+                            </div>
+
+                            <!-- 주소 입력 필드 -->
+                            <div class="form-group">
+                                <label for="userAddress"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="userAddress" id="address" placeholder="Your Address" />
+                            </div>
+
+                            <div class="">
+                                <!-- 회원 가입 버튼 -->
+                                <button type="submit" name="signup" id="signup" class="form-submit">Sign Up</button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="second-container">
+                        <div class="form-group form-button" id="GetAuthCode-btn-container">
+                            <!-- 인증코드 받기 버튼 -->
+                            <input type="submit" name="confirm" id="confirm" class="form-submit" value="Get AuthCode" />
+                        </div>
+
+                        <div class="signup-image">
+                            <figure><img
+                                    src="https://cdn.icon-icons.com/icons2/2822/PNG/512/food_delivery_man_icon_179638.png"
+                                    alt="sign up image"></figure>
+                            <a style="color: black;" href="login.html">Already have an account?</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>
