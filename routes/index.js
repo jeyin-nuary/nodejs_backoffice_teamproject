@@ -9,12 +9,17 @@ router.get('/stores/:storeId/orders', (req, res) => {
 
 // signUp.html 경로
 router.get('/signUp', (req, res) => {
-  res.redirect(`/signUp.html`);
+  res.redirect('/signUp.html');
 });
 
 // login.html 경로
 router.get('/login', (req, res) => {
-  res.redirect(`/login.html`);
+  res.redirect('/login.html');
 });
+
+// // logout.html 경로
+// router.get('/logout', (req, res) => {
+//   res.redirect('/logout.html');
+// });
 
 module.exports = router;
