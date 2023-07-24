@@ -6,7 +6,7 @@ const menuId = urlParams.get('menuId');
 document.getElementById('menuCrBtn').addEventListener('click', async function() {
   const menuName = document.getElementById('menuName').value;
   const menuPrice = document.getElementById('menuPrice').value;
-  const menuimg = document.getElementById('menuimg').value;
+  // const menuImg = document.getElementById('menuImg').value;
   const menuInfo = document.getElementById('menuInfo').value;
 
   try {
@@ -18,7 +18,7 @@ document.getElementById('menuCrBtn').addEventListener('click', async function() 
       body: JSON.stringify({
         menuName,
         menuPrice,
-        menuimg,
+        // menuImg,
         menuInfo,
       }),
     });
@@ -27,7 +27,7 @@ document.getElementById('menuCrBtn').addEventListener('click', async function() 
     if (response.ok) {
       console.log(data.message);
       alert('메뉴가 등록되었습니다');
-      window.location.href;
+      location.href = '/main';
     } else {
       console.log(data.errMessage);
     }

@@ -51,8 +51,8 @@
     }
   </style>
   <script src="https://kit.fontawesome.com/5dcc34aea3.js" crossorigin="anonymous"></script>
-  <script src="./header.js" defer></script>
-  <script src="./order_Page.js" defer></script>
+  <script src="./javascript/header.js" defer></script>
+  <script src="./javascript/order_Page.js" defer></script>
   <link rel="stylesheet" href="./header.css" type="text/css" />
   <title>주문페이지 입니다!</title>
 </head>
@@ -60,10 +60,9 @@
 <body>
 
 
-  <a href="#" class="navbar__toogleBtn">
-    <i class="fa-solid fa-bars"></i>
-  </a>
-  </nav>
+  <header id="myHeader"></header>
+
+
   <h1 class="my-4 white-text center-text" id="storeName"></h1>
   <form id="orderForm">
     <form id="store-register-form">
@@ -95,7 +94,7 @@
       </div>
       <div class="button-container">
         <button type="submit" class="btn btn-primary">결제</button>
-        <button type="button" class="btn btn-danger" onclick="location.href='http://localhost:3000/'">
+        <button type="button" class="btn btn-danger" onclick="location.href='/main">
           <!-- 위에 href= 뒤부터는 취소버튼 후 돌아갈 페이지 주소 넣으면 됨-->
           취소
         </button>
@@ -103,9 +102,9 @@
     </form>
   </form>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 </body>
 
 </html>

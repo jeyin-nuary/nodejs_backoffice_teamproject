@@ -17,7 +17,7 @@ async function fetchStoreLists() {
         storeLists.innerHTML += ` 
       <div class="card mb-5">
   <div class="card-header">
-   평점: ${'★'.repeat(store.storeRating)}
+
   </div>
   <div class="card-body">
     <h5 class="card-title">가게이름: ${store.storeName}</h5>
@@ -31,7 +31,7 @@ async function fetchStoreLists() {
         storeLists.innerHTML += `
         <div class="card mb-5">
     <div class="card-header">
-     평점: ${'★'.repeat(store.storeRating)}
+  
     </div>
     <div class="card-body">
       <h5 class="card-title">가게이름: ${store.storeName}</h5>

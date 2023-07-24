@@ -19,8 +19,6 @@ let data;
 const getData = async () => {
   const response = await fetch(`/api/stores/${storeId}`);
   data = await response.json();
-  console.log(data);
-  console.log(nowPrice);
 
   const menus = data.Menus.map(menu => {
     return `<option value=${menu.menuId}>${menu.menuName}</option>`;

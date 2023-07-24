@@ -6,6 +6,17 @@ router.get('/main', (req, res) => {
   res.redirect(`/main.html`);
 });
 
+// order_Page.html 경로
+router.get('/orderpage/:storeId', (req, res) => {
+  const { storeId } = req.params;
+  res.redirect(`/order_Page.html?storeId=${storeId}`);
+});
+
+// my.html 경로
+router.get('/mypage', (req, res) => {
+  res.redirect(`/mypage.html`);
+});
+
 // store.html 경로
 router.get('/stores/:storeId', (req, res) => {
   const { storeId } = req.params;

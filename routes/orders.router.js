@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authMiddlware = require('../middlewares/auth-middleware');
-const { Menus, Orders } = require('../models');
+const { Menus, Orders, Stores, Users, sequelize } = require('../models');
 
 // (사장) 주문 상세 페이지 주문 목록 조회 API
 router.get('/stores/:storeId/orders', authMiddlware, async (req, res) => {
@@ -50,7 +50,8 @@ router.post('/stores/:storeId/menus/:menuId/order', authMiddlware, async (req, r
   const { userId } = res.locals.user;
   const { storeId, menuId } = req.params;
   // console.log(storeId, menuId);
-  const { orderQuantity, deliveryReq, orderStatus } = req.body;
+  const { orderQuantity, deliveryReq } = req.body;
+  const orderStatus = '주문 등록';
 
   const ts = await sequelize.transaction();
   try {
