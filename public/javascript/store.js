@@ -15,7 +15,7 @@ const getStore = async () => {
 
   // 가게 정보 붙여주기
   try {
-    let { storeAddress, storeName, storeRating, storeUrl } = orders;
+    let { storeAddress, storeName, storeUrl } = orders;
 
     if (!storeUrl) {
       storeUrl =
@@ -32,7 +32,6 @@ const getStore = async () => {
                             </div>
                         <div class="store-desc">
                             <a href="${storeAddress}">${storeName} 메인 페이지 바로가기</a>
-                            <p>Rate: ${storeRating}</p>
                         </div>
                     </div>`;
     $('.first-container').append(temp_html);

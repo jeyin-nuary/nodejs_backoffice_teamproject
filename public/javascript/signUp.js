@@ -53,7 +53,6 @@ async function signup(req) {
       location.href = '/login';
     } else {
       alert(data.errorMessage);
-      // location.reload();
     }
   } catch (error) {
     console.log(error);
