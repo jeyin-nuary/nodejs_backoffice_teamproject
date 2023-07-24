@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+// main.html 경로
+router.get('/main', (req, res) => {
+  res.redirect(`/main.html`);
+});
+
 // store.html 경로
 router.get('/stores/:storeId', (req, res) => {
   const { storeId } = req.params;

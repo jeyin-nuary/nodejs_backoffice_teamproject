@@ -21,7 +21,7 @@ const userLogin = async () => {
 
     if (data.message) {
       alert(data.message);
-      location.href = '/';
+      location.href = '/main';
     } else {
       alert(data.errorMessage);
       location.reload();
