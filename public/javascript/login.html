@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 문자 인코딩과 반응형 디자인 설정을 지정하는 메타 태그 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jQuery 라이브러리와 Font Awesome 아이콘 키트를 CDN에서 로드 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/5dcc34aea3.js" crossorigin="anonymous"></script>
+
+    <!-- 외부 JavaScript 파일을 지연 로딩(defer) -->
+    <script src="./javascript/header.js" defer></script>
+    <script src="./javascript/login.js" defer></script> <!--현재 login.js 파일이 없으니까 만들어야 함-->
+
+    <!-- 외부 CSS 파일들 -->
+    <link rel="stylesheet" href="./header.css" type="text/css">
+    <link rel="stylesheet" href="./auth.css" type="text/css">
+
+    <!-- 웹 페이지의 제목(title) -->
+    <title>login page</title>
+</head>
+
+<body>
+    <!-- 헤더 엘리먼트(header) with the id "myHeader" -->
+    <header id="myHeader"></header>
+
+    <div class="main">
+        <!-- 로그인 섹션 -->
+        <section class="signin">
+            <div class="container">
+                <div class="signin-content">
+
+                    <!-- 로그인 이미지와 회원 가입 링크 -->
+                    <div class="signin-image">
+                        <figure><img src="./img/images/signin2-img.png.png" alt="sign in image"></figure>
+                        <div class="create-href">
+                            <a href="signUp.html">👉 Create an account</a>
+                        </div>
+                        </figure>
+                    </div>
+
+                    <!-- 로그인 폼 -->
+                    <div class="signin-form">
+                        <!-- 로그인 제목 -->
+                        <h2 class="form-title">Sign in</h2>
+
+                        <form method="POST" class="register-form" id="login-form">
+                            <!-- 이메일 입력 필드 -->
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" />
+                            </div>
+
+                            <!-- 비밀번호 입력 필드 -->
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="your_pass" id="your_pass" placeholder="Password" />
+                            </div>
+
+                            <!-- "Remember me" 체크박스 -->
+                            <!--<div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember
+                                    me</label>
+                            </div>-->
+
+                            <!-- 로그인 버튼 -->
+                            <div id="login-btn-container" class="form-group form-button">
+                                <button type="button" id="login-btn" class="form-submit"> Log In</button>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+</body>
+
+</html>

@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+.first-div {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+
+  background-color: rgb(55, 70, 96);
+  border-radius: 10px;
+  padding-top: 20px;
+}
+.first-container {
+  width: 100%;
+}
+
+.space {
+  margin: 0;
+  font-family: 'Black Han Sans', sans-serif;
+  width: 800px;
+  font-size: 2.5rem;
+  color: rgb(223, 223, 223);
+}
+#store-name {
+  margin: 0;
+}
+.Review-title {
+  font-size: 2rem;
+  color: rgb(223, 223, 223);
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Black Han Sans', sans-serif;
+  height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.Review-title p {
+  margin: 0;
+}
+.review-btn-container {
+  margin: 1rem;
+  width: 1200px;
+}
+
+.space {
+  font-family: 'Black Han Sans', sans-serif;
+  margin-left: 110px;
+  width: 800px;
+  font-size: 2.5rem;
+  color: rgb(223, 223, 223);
+}
+.button-container {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 50px;
+}
+
+.add-menuBtn {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 50px;
+  width: 90px;
+  background-color: rgb(10, 17, 68);
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+.add-menuBtn:hover {
+  background-color: #091b92;
+}
+
+.store-img {
+  display: flex;
+
+  width: 600px;
+  height: 230px;
+}
+.store-desc {
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 600px;
+}
+.store-desc a {
+  width: 100%;
+  font-size: 1.5rem;
+  color: #00ccff;
+}
+.store-desc p {
+  margin: 10px 0 0 0;
+  width: 100%;
+  color: white;
+  font-size: 1.5rem;
+}
+.store-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.second-container {
+  margin-top: 1rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(55, 70, 96);
+  width: 1200px; /* 스크롤 컨테이너의 가로 너비 */
+  height: 400px; /* 스크롤 컨테이너의 세로 높이 */
+  overflow-x: auto; /* 가로 스크롤을 활성화합니다. */
+}
+.second-container::-webkit-scrollbar {
+  width: 11px; /* 스크롤바의 너비 */
+}
+.second-container::-webkit-scrollbar-thumb {
+  height: 20%; /* 스크롤바의 길이 */
+  background-color: #091e37;
+  border-radius: 10px;
+}
+.second-container::-webkit-scrollbar-track {
+  background: #84848447; /*스크롤바 뒷 배경 색상*/
+}
+.menu-container {
+  margin: 1.5rem;
+  width: 300px;
+  height: 330px;
+}
+.menuinfo {
+  border-radius: 10px;
+  width: 300px;
+  height: 350px;
+  background-color: #06283f;
+}
+.menu-info-container {
+  display: flex;
+  margin-left: 10px;
+}
+.menu-img {
+  width: 300px;
+  height: 150px;
+}
+.menu-img img {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+.menu-name {
+  margin-left: 10px;
+  color: white;
+  width: 200px;
+}
+.menu-name p {
+  overflow: hidden;
+  white-space: nowrap; /* 글자가 넘칠 때 줄바꿈을 방지합니다. */
+  text-overflow: ellipsis; /* 글자가 넘칠 때 ...으로 표시합니다. */
+  width: 100px;
+  height: auto;
+}
+
+.menu-price {
+  display: flex;
+  width: 200px;
+  color: white;
+}
+.menu-price p {
+  overflow: hidden;
+  white-space: nowrap; /* 글자가 넘칠 때 줄바꿈을 방지합니다. */
+  text-overflow: ellipsis; /* 글자가 넘칠 때 ...으로 표시합니다. */
+  width: 150px;
+  height: auto;
+}
+.menu-desc {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  color: white;
+  height: 130px;
+  background-color: rgb(55, 70, 96);
+  border-radius: 5px;
+  overflow: auto; /* 길이가 넘어가면 스크롤바를 표시합니다. */
+}
+.menu-desc::-webkit-scrollbar {
+  width: 11px; /* 스크롤바의 너비 */
+}
+.menu-desc::-webkit-scrollbar-thumb {
+  height: 10%; /* 스크롤바의 길이 */
+  background-color: #091e37;
+  border-radius: 10px;
+}
+.menu-desc::-webkit-scrollbar-track {
+  background: #84848447; /*스크롤바 뒷 배경 색상*/
+}
+.menu-desc p {
+  width: 100%;
+  margin: 1rem;
+}
+
+.review-container {
+  margin-top: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+.review-form {
+  padding: 20px 0px 20px 0px;
+  overflow: auto;
+  margin-top: 15rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 1200px;
+  height: 500px;
+  background-color: rgb(55, 70, 96);
+}
+.review-form::-webkit-scrollbar {
+  width: 11px; /* 스크롤바의 너비 */
+}
+.review-form::-webkit-scrollbar-thumb {
+  height: 20%; /* 스크롤바의 길이 */
+  background-color: #091e37;
+  border-radius: 10px;
+}
+.review-form::-webkit-scrollbar-track {
+  background: #84848447; /*스크롤바 뒷 배경 색상*/
+}
+.review {
+  margin: 1rem;
+  width: 1000px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 170px;
+  background-color: #06283f;
+}
+.review-img {
+  margin-left: 6rem;
+  margin-right: 3rem;
+  width: 200px;
+  height: 150px;
+}
+.review-img img {
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+}
+.review-content {
+  margin-right: 30px;
+  height: 150px;
+  width: 500px;
+  background-color: antiquewhite;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  background-color: rgb(28, 39, 60);
+  border-radius: 5px;
+  overflow: auto; /* 길이가 넘어가면 스크롤바를 표시합니다. */
+}
+.review-content::-webkit-scrollbar {
+  width: 11px; /* 스크롤바의 너비 */
+}
+.review-content::-webkit-scrollbar-thumb {
+  height: 20%; /* 스크롤바의 길이 */
+  background-color: #091e37;
+  border-radius: 10px;
+}
+.review-content::-webkit-scrollbar-track {
+  background: #84848447; /*스크롤바 뒷 배경 색상*/
+}
+.review-content p {
+  margin: 0.5rem;
+}
+.review-nickname {
+  background-color: rgb(55, 70, 96);
+  width: 500px;
+  margin-top: 20px;
+}
+.review-btn {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.review-btn button {
+  margin: 0.5rem;
+}
