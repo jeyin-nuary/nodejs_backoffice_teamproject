@@ -2,28 +2,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('OrderMenus', {
-      orderMenuId: {
+    await queryInterface.createTable('AuthMails', {
+      emailId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      menuId: {
+      email: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
-      orderId: {
+      authCode: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      orderQuantity: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      totalPrice: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +28,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('OrderMenus');
+    await queryInterface.dropTable('AuthMails');
   },
 };

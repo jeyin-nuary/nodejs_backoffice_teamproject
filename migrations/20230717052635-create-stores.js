@@ -10,6 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       userId: {
+        references: {
+          model: 'Users',
+          key: 'userId',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         allowNull: false,
         type: Sequelize.INTEGER,
       },
@@ -28,6 +34,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      // storeSales: {
+      //   allowNull: false,
+      //   defaultValue: 0,
+      //   type: Sequelize.INTEGER,
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

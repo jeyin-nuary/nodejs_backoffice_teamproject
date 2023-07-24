@@ -1,0 +1,39 @@
+.review {
+  width: 95%;
+  max-width: 500px;
+  height: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: rgb(56, 75, 92);
+  border-radius: 5px;
+}
+
+.mybtns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.btn {
+  background-color: rgb(13, 53, 85);
+  border-radius: 10px;
+  width: 100px;
+  height: 50px;
+}
+
+#review-content {
+  height: 250px;
+  font-size: 1.5rem;
+}
+#review-img {
+  margin-bottom: 15px;
+}
+
+.input-group {
+  margin-top: 30px;
+}

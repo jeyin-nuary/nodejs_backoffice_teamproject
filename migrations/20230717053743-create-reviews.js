@@ -10,14 +10,22 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       userId: {
+        references: {
+          model: 'Users',
+          key: 'userId',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         allowNull: false,
         type: Sequelize.INTEGER,
       },
       storeId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      orderId: {
+        references: {
+          model: 'Stores',
+          key: 'storeId',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         allowNull: false,
         type: Sequelize.INTEGER,
       },
@@ -27,6 +35,10 @@ module.exports = {
       },
       reviewUrl: {
         type: Sequelize.STRING,
+      },
+      reviewRating: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

@@ -10,16 +10,20 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.Reviews, {
-        targetKey: 'userId',
+        sourceKey: 'userId',
         foreignKey: 'userId',
       });
       this.hasMany(models.Stores, {
-        targetKey: 'userId',
+        sourceKey: 'userId',
         foreignKey: 'userId',
       });
       this.hasMany(models.Orders, {
-        targetKey: 'userId',
+        sourceKey: 'userId',
         foreignKey: 'userId',
+      });
+      this.hasOne(models.AuthMails, {
+        sourceKey: 'email',
+        foreignKey: 'authCode',
       });
     }
   }
@@ -27,6 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       userId: {
         allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
         type: DataTypes.INTEGER,
       },
       email: {

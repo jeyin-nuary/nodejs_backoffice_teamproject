@@ -18,11 +18,6 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'userId',
         foreignKey: 'userId',
       });
-
-      this.hasOne(models.Orders, {
-        targetKey: 'orderId',
-        foreignKey: 'orderId',
-      });
     }
   }
   Reviews.init(
@@ -41,16 +36,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      orderId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-      },
       reviewContent: {
         allowNull: false,
         type: DataTypes.STRING,
       },
       reviewUrl: {
         type: DataTypes.STRING,
+      },
+      reviewRating: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
       },
       createdAt: {
         allowNull: false,

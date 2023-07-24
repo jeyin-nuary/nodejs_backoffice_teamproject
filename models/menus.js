@@ -9,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Stores, {
+      this.belongsTo(models.Stores, {
         targetKey: 'storeId',
         foreignKey: 'storeId',
       });
-      this.hasMany(models.OrderMenus, {
-        targetKey: 'menuId',
-        foreignKey: 'meunId',
+      this.hasMany(models.Orders, {
+        sourceKey: 'menuId',
+        foreignKey: 'menuId',
       });
     }
   }
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      menuUrl: {
+      menuImg: {
         type: DataTypes.STRING,
       },
       menuInfo: {

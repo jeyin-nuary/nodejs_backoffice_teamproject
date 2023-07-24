@@ -13,12 +13,16 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'storeId',
         foreignKey: 'storeId',
       });
-      this.hasMany(models.Users, {
+      this.belongsTo(models.Users, {
         targetKey: 'userId',
         foreignKey: 'userId',
       });
-      this.hasMany(models.OrderMenus, {
-        targetKey: 'orderId',
+      this.belongsTo(models.Menus, {
+        targetKey: 'menuId',
+        foreignKey: 'menuId',
+      });
+      this.hasMany(models.Reviews, {
+        sourceKey: 'orderId',
         foreignKey: 'orderId',
       });
     }
@@ -39,11 +43,27 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
+      menuId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
       deliveryReq: {
         allowNull: false,
         type: DataTypes.STRING,
       },
       userAddress: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      orderQuantity: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      totalPrice: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      orderStatus: {
         allowNull: false,
         type: DataTypes.STRING,
       },

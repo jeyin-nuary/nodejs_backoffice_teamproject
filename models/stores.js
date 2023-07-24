@@ -10,19 +10,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.Reviews, {
-        targetKey: 'storeId',
+        sourceKey: 'storeId',
         foreignKey: 'storeId',
       });
       this.hasMany(models.Menus, {
-        targetKey: 'storeId',
+        sourceKey: 'storeId',
         foreignKey: 'storeId',
       });
-      this.hasMany(models.Users, {
+      this.belongsTo(models.Users, {
         targetKey: 'userId',
         foreignKey: 'userId',
       });
-      this.hasMany(models.OrderMenus, {
-        targetKey: 'storeId',
+      this.hasMany(models.Orders, {
+        sourceKey: 'storeId',
         foreignKey: 'storeId',
       });
     }
@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: {
         allowNull: false,
+
         type: DataTypes.INTEGER,
       },
       storeName: {
@@ -47,11 +48,17 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      // storeSales: {
+      //   allowNull: false,
+      //   defaultValue: 0,
+      //   type: DataTypes.INTEGER,
+      // },
       storeUrl: {
         type: DataTypes.STRING,
       },
       storeRating: {
         allowNull: false,
+        defaultValue: 0,
         type: DataTypes.INTEGER,
       },
       createdAt: {
