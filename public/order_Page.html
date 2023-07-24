@@ -47,7 +47,7 @@
     </style>
     <script src="https://kit.fontawesome.com/5dcc34aea3.js" crossorigin="anonymous"></script>
     <script src="./header.js" defer></script>
-    <script src="./order_Page.js" defer></script>
+    <script src="/javascript/order_Page.js" defer></script>
     <link rel="stylesheet" href="./header.css" type="text/css" />
     <title>주문페이지 입니다!</title>
   </head>
@@ -112,12 +112,10 @@
           <p type="text" class="form-control" id="totalPrice" name="totalPrice"></p>
         </div>
         <div class="button-container">
-          <button type="submit" class="btn btn-primary">결제</button>
-          <button
-            type="button"
-            class="btn btn-danger"
-            onclick="location.href='http://localhost:3000/'"
-          >
+          <button type="submit" class="btn btn-primary" onclick="location.replace('/mypage.html')">
+            결제
+          </button>
+          <button type="button" class="btn btn-danger" onclick="location.href='/'">
             <!-- 위에 href= 뒤부터는 취소버튼 후 돌아갈 페이지 주소 넣으면 됨-->
             취소
           </button>

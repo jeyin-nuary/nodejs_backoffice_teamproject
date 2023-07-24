@@ -20,6 +20,7 @@ const getData = async () => {
   const response = await fetch(`/api/stores/${storeId}`);
   data = await response.json();
   console.log(data);
+  console.log(nowPrice);
 
   const menus = data.Menus.map(menu => {
     return `<option value=${menu.menuId}>${menu.menuName}</option>`;
@@ -80,7 +81,7 @@ form.addEventListener('submit', async event => {
       alert('주문이 성공적으로 등록되었습니다!');
       console.log(result);
     } else {
-      alert(result.errorMessage || '주문을 등록하는데 실패하였습니다.');
+      alert(result.errorMessage || '주문을 결제하는데 실패하였습니다.');
     }
   } catch (error) {
     console.error('Error:', error);

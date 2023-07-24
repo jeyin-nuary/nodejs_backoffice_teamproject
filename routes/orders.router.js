@@ -50,6 +50,7 @@ router.patch('/orders/:orderId/change', async (req, res) => {
 router.post('/stores/:storeId/menus/:menuId/order', middleware, async (req, res) => {
   const { userId } = res.locals.user;
   const { storeId, menuId } = req.params;
+  // console.log(storeId, menuId);
   const { orderQuantity, deliveryReq, orderStatus } = req.body;
 
   const ts = await sequelize.transaction();
