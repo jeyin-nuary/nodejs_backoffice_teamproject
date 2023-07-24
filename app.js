@@ -11,16 +11,15 @@ const pageRouter = require('./routes/index.js');
 const storeListRouter = require('./routes/stores.router');
 const reviewsRouter = require('./routes/reviews.router');
 const mainRouter = require('./routes/main.router');
-
+const userRouter = require('./routes/users.router');
 app.use(express.json()); // json 파싱
 app.use(cookieParser()); // 쿠키 파싱
 
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static('public'));
-app.use('/api', [menuRouter, storeListRouter, orderRouter, authRouter, reviewsRouter, mainRouter]);
+app.use('/api', [menuRouter, storeListRouter, orderRouter, authRouter, reviewsRouter, mainRouter,userRouter]);
 app.use('/', pageRouter);
-
 app.listen(PORT, () => {
   console.log(PORT + '번 포트로 서버가 열렸습니다.');
 });

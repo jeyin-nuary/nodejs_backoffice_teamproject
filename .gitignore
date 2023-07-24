@@ -1,2 +1,7 @@
 .env
 /node_modules
+.vscode/settings.json
+pages/mypage.html
+.gitignore
+/config
+pages/mypage.js
